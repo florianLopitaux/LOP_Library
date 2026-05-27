@@ -1,7 +1,4 @@
-(in-package :sample-component)
-
-
-
+(in-package :users)
 
 ;;; implement entity maanger functions
 

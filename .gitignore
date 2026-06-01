@@ -1,1 +1,3 @@
 *.fasl
+better_lang/*.fasl
+library_app/*.fasl

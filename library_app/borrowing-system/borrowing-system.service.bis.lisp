@@ -36,16 +36,17 @@
   )
 
   ;; function body
-  (let ((transaction
-    (multiple-value-bind (sec min hour day month year)
-      (get-decoded-time)
-      (declare (ignore sec min hour))
- 
-      (make-instance 'BorrowingRecord
-        :start-date (make-tDate :month today-month :day today-day :year today-year)
-        :due-date (_createDueDate today-month today-day today-year)
-        :customer customer
-        :book item))))
+  (let* ((current-time (multiple-value-list (get-decoded-time)))
+       (today-day   (fourth current-time))
+       (today-month (fifth current-time))
+       (today-year  (sixth current-time)))
+
+    (make-instance 'BorrowingRecord
+      :start-date (make-tDate :month today-month :day today-day :year today-year)
+      :due-date (_createDueDate today-month today-day today-year)
+      :customer customer
+      :book item
+    )
   )
 
 ) ;; end function

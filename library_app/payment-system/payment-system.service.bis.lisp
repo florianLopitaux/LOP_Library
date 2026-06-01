@@ -19,20 +19,16 @@
   )
 
   ;; function body
-  (let
-    ((transaction
-      (multiple-value-bind (sec min hour day month year)
-        (get-decoded-time)
-        (declare (ignore sec min hour))
+  (let* ((current-time (multiple-value-list (get-decoded-time)))
+    (today-day   (fourth current-time))
+    (today-month (fifth current-time))
+    (today-year  (sixth current-time))
 
-        (make-instance 'Transaction
-          :reference payment-reason
-          :date (make-tDate :month month :day day :year year)
-          :amount (applyDiscount customer (_getPrice payment-reason))
-          :customer customer
-        )
-      )
-    ))
+    (transaction (make-instance 'Transaction
+        :reference payment-reason
+        :date (make-tDate :month today-month :day today-day :year today-year)
+        :amount (applyDiscount customer (_getPrice payment-reason))
+        :customer customer)))
 
     (format t "~A has paid a ~A.~%" customer payment-reason)
     transaction
@@ -44,7 +40,9 @@
 (def-function subscribeNewCustomer (
     (customer-name :type tFullName :documentation "The name of the customer")
     (customer-role :type eCustomerRole :documentation "The role of the new customer")
-    (&key (customer-address nil) (customer-email nil))
+    &key 
+    (customer-address :type tAddress :documentation "(optional) The home address of the customer")
+    (customer-email :type string :documentation "(optional) The email of the customer")
   )
   ;; function documentation
   (

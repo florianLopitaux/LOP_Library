@@ -23,6 +23,7 @@
     ;; REFORWARD EXPORT (ast to professor if there is another solution)
     eCustomerRole
     tFullName
+    tAddress
     Customer
     applyDiscount
    )

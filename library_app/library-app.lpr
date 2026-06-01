@@ -43,7 +43,7 @@
                  (make-instance 'module :name
                                 "payment-system/payment-system.service.bis.lisp")
                  (make-instance 'module :name "payment-system/payment-system.test.lisp"))
-  :projects (list (make-instance 'project-module :name "../lang/LOP.lpr" :show-modules
+  :projects (list (make-instance 'project-module :name "../better_lang/LOP.lpr" :show-modules
                                  nil))
   :libraries nil
   :editable-files nil

@@ -42,9 +42,12 @@
                                 "payment-system/payment-system.entity-manager.bis.lisp")
                  (make-instance 'module :name
                                 "payment-system/payment-system.service.bis.lisp")
-                 (make-instance 'module :name "payment-system/payment-system.test.lisp"))
-  :projects (list (make-instance 'project-module :name "../better_lang/LOP.lpr" :show-modules
-                                 nil))
+                 (make-instance 'module :name "payment-system/payment-system.test.lisp")
+                 (make-instance 'module :name "config/config.component.lisp")
+                 (make-instance 'module :name "config/config.db.lisp")
+                 (make-instance 'module :name "config/config.init.lisp"))
+  :projects (list (make-instance 'project-module :name "../better_lang/LOP.lpr"
+                                 :show-modules nil))
   :libraries nil
   :editable-files nil
   :distributed-files nil

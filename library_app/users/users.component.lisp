@@ -11,7 +11,9 @@
     eCustomerStatus
     eCustomerRole
     tFullName
+    make-tFullName
     tAddress
+    make-tAddress
 
     ;; CLASSES
     Customer

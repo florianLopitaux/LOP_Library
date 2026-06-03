@@ -32,7 +32,7 @@
    commit rollback
    
    ;;; database
-   open-file-database close-­database
+   open-file-database close-ï¿½database
 
    )
   )

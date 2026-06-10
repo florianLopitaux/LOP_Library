@@ -62,7 +62,7 @@
   (dbClear '(
       users:Customer
       resources:BookReference
-      ;; stock:BookItem
+      stock:BookItem
       ;; borrow-system:BorrowingRecord
       ;; payment-system:Transaction
     )
@@ -136,8 +136,7 @@
   (list
     (make-instance 'resources:BookReference
       :title "Clean Code"
-      :author "Robert Martin"
-      :type :research)
+      :author "Robert Martin")
    
     (make-instance 'resources:BookReference
       :title "Harry Potter"
@@ -146,14 +145,27 @@
    
     (make-instance 'resources:BookReference
       :title "Star Wars"
-      :author "Alan Dean Foster")
+      :author "Alan Dean Foster"
+      :type :normal))
+  
+) ;; end function
 
-   
-
-
+(def-function _dbSeedBookItem ()
+  ;; function documentation
+  (
+    :documentation "Fill the BookItem entity with template entity object"
+    :examples "(dbSeedBookItem) -> (#<BookItem[1]* ...> #<BookItem[2]* ...)"
+    :post (> (length :result) 0)
+    :return-type 'list
   )
 
+  ;; function body
+  (list
+    (make-instance 'stock:BookItem
+      :book-ref (find-by-oid 'resources:BookReference 1029)))
+
 ) ;; end function
+
 
 
 
@@ -199,7 +211,7 @@
   (dbSeed '(
       users:Customer
       resources:BookReference
-      ;; stock:BookItem
+      stock:BookItem
       ;; borrow-system:BorrowingRecord
       ;; payment-system:Transaction
     )

@@ -18,5 +18,6 @@
 
     ;; FUNCTIONS
     findAllResearchBookReferences
+    findAllNormalBookReferences
    )
   )

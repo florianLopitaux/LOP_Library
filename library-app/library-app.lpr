@@ -22,6 +22,13 @@
                  (make-instance 'module :name "stock/stock.service.bis.lisp")
                  (make-instance 'module :name "stock/stock.test.lisp")
 
+		 (make-instance 'module :name "borrowing-system/borrowing-system.component.lisp")
+                 (make-instance 'module :name "borrowing-system/borrowing-system.datatype.bis.lisp")
+                 (make-instance 'module :name "borrowing-system/borrowing-system.entity.bis.lisp")
+                 (make-instance 'module :name "borrowing-system/borrowing-system.entity-manager.bis.lisp")
+                 (make-instance 'module :name "borrowing-system/borrowing-system.service.bis.lisp")
+                 (make-instance 'module :name "borrowing-system/borrowing-system.test.lisp")
+
 		 (make-instance 'module :name "config/config.component.lisp")
                  (make-instance 'module :name "config/config.db.lisp")
                  (make-instance 'module :name "config/config.init.lisp"))

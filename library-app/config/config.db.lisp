@@ -61,7 +61,7 @@
   ;; function body
   (dbClear '(
       users:Customer
-      ;; resources:BookReference
+      resources:BookReference
       ;; stock:BookItem
       ;; borrow-system:BorrowingRecord
       ;; payment-system:Transaction
@@ -123,6 +123,39 @@
 
 ) ;; end function
 
+(def-function _dbSeedBookReference ()
+  ;; function documentation
+  (
+    :documentation "Fill the BookReference entity with template entity object"
+    :examples "(dbSeedBookReference) -> (#<BookReference[1]* ...> #<BookReference[2]* ...)"
+    :post (> (length :result) 0)
+    :return-type 'list
+  )
+
+  ;; function body
+  (list
+    (make-instance 'resources:BookReference
+      :title "Clean Code"
+      :author "Robert Martin"
+      :type :research)
+   
+    (make-instance 'resources:BookReference
+      :title "Harry Potter"
+      :author "JK Rowling"
+      :type :normal)
+   
+    (make-instance 'resources:BookReference
+      :title "Star Wars"
+      :author "Alan Dean Foster")
+
+   
+
+
+  )
+
+) ;; end function
+
+
 
 (def-function dbSeed (
     (entities :type list :documentation "List of entities to seed")
@@ -165,7 +198,7 @@
   ;; function body
   (dbSeed '(
       users:Customer
-      ;; resources:BookReference
+      resources:BookReference
       ;; stock:BookItem
       ;; borrow-system:BorrowingRecord
       ;; payment-system:Transaction

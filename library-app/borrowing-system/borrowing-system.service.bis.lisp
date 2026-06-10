@@ -63,7 +63,7 @@
   )
 
   ;; function body
-  (set-is-returned record true)
+  (set-is-returned true record)
 
 ) ;; end function
 

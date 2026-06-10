@@ -29,6 +29,13 @@
                  (make-instance 'module :name "borrowing-system/borrowing-system.service.bis.lisp")
                  (make-instance 'module :name "borrowing-system/borrowing-system.test.lisp")
 
+		 (make-instance 'module :name "payment-system/payment-system.component.lisp")
+                 (make-instance 'module :name "payment-system/payment-system.datatype.bis.lisp")
+                 (make-instance 'module :name "payment-system/payment-system.entity.bis.lisp")
+                 (make-instance 'module :name "payment-system/payment-system.entity-manager.bis.lisp")
+                 (make-instance 'module :name "payment-system/payment-system.service.bis.lisp")
+                 (make-instance 'module :name "payment-system/payment-system.test.lisp")
+
 		 (make-instance 'module :name "config/config.component.lisp")
                  (make-instance 'module :name "config/config.db.lisp")
                  (make-instance 'module :name "config/config.init.lisp"))

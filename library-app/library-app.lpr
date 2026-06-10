@@ -6,7 +6,10 @@
                  (make-instance 'module :name "users/users.entity.bis.lisp")
                  (make-instance 'module :name "users/users.entity-manager.bis.lisp")
                  (make-instance 'module :name "users/users.service.bis.lisp")
-                 (make-instance 'module :name "users/users.test.lisp"))
+                 (make-instance 'module :name "users/users.test.lisp")
+		 (make-instance 'module :name "config/config.component.lisp")
+                 (make-instance 'module :name "config/config.db.lisp")
+                 (make-instance 'module :name "config/config.init.lisp"))
                  
   :projects (list (make-instance 'project-module :name "../better_lang/LOP.lpr"
                                  :show-modules nil))

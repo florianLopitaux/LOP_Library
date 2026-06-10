@@ -1,7 +1,7 @@
 (bis:def-component :de.h-da.lop.app.library-app.users
   (:nicknames :users)
   (:documentation "Package that relate to all types of users of the library")
-  (:languages :bis :functional :oo :test)    ;;; delete languages not used here
+  (:languages :bis :functional :oo :test :rule :workflow)    ;;; delete languages not used here
   (:import
     ;; PACKAGE DEPENDENCIES
 

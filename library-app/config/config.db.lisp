@@ -63,8 +63,8 @@
       users:Customer
       resources:BookReference
       stock:BookItem
-      ;; borrow-system:BorrowingRecord
-      ;; payment-system:Transaction
+      borrowing-system:BorrowingRecord
+      payment-system:Transaction
     )
   )
 
@@ -162,9 +162,50 @@
   ;; function body
   (list
     (make-instance 'stock:BookItem
-      :book-ref (find-by-oid 'resources:BookReference 1029)))
+      :book-ref (find-by-oid 'resources:BookReference 1019)
+      )
+    (make-instance 'stock:BookItem
+      :book-ref (find-by-oid 'resources:BookReference 1019)
+      :state :damage
+      )
+    (make-instance 'stock:BookItem
+      :book-ref (find-by-oid 'resources:BookReference 1017)
+      )
+  )
 
+
+  ) ;; end function
+
+(def-function _dbSeedBorrowingRecord ()
+  ;; function documentation
+  (
+    :documentation "Fill the BorrowingRecord entity with template entity object"
+    :examples "(dbSeedBorrowingRecord) -> (#<BorrowingRecord[1]* ...> #<BorrowingRecord[2]* ...)"
+    :post (> (length :result) 0)
+    :return-type 'list
+  )
+
+  ;; function body
+  (list
+    (make-instance 'borrowing-system:BorrowingRecord
+      :start-date (borrowing-system:make-tDate :month 6 :day 15 :year 2026)
+      :due-date (borrowing-system:make-tDate :month 7 :day 15 :year 2026)
+      :is-returned false
+      :customer (find-by-oid 'users:Customer 1011)
+      :book (find-by-oid 'stock:BookItem 1021)
+      )
+    (make-instance 'borrowing-system:BorrowingRecord
+      :start-date (borrowing-system:make-tDate :month 6 :day 15 :year 2026)
+      :due-date (borrowing-system:make-tDate :month 7 :day 15 :year 2026)
+      :is-returned false
+      :customer (find-by-oid 'users:Customer 1015)
+      :book (find-by-oid 'stock:BookItem 1023)
+      )
+
+   )
+   
 ) ;; end function
+
 
 
 
@@ -212,8 +253,8 @@
       users:Customer
       resources:BookReference
       stock:BookItem
-      ;; borrow-system:BorrowingRecord
-      ;; payment-system:Transaction
+      borrowing-system:BorrowingRecord
+      payment-system:Transaction
     )
   )
 

@@ -191,20 +191,95 @@
       :start-date (borrowing-system:make-tDate :month 6 :day 15 :year 2026)
       :due-date (borrowing-system:make-tDate :month 7 :day 15 :year 2026)
       :is-returned false
-      :customer (find-by-oid 'users:Customer 1011)
+      :customer (find-by-oid 'users:Customer 1013)
       :book (find-by-oid 'stock:BookItem 1021)
       )
     (make-instance 'borrowing-system:BorrowingRecord
-      :start-date (borrowing-system:make-tDate :month 6 :day 15 :year 2026)
-      :due-date (borrowing-system:make-tDate :month 7 :day 15 :year 2026)
+      :start-date (borrowing-system:make-tDate :month 6 :day 18 :year 2026)
+      :due-date (borrowing-system:make-tDate :month 7 :day 18 :year 2026)
       :is-returned false
       :customer (find-by-oid 'users:Customer 1015)
       :book (find-by-oid 'stock:BookItem 1023)
       )
+    (make-instance 'borrowing-system:BorrowingRecord
+      :is-returned true
+      :customer (find-by-oid 'users:Customer 1011)
+      :book (find-by-oid 'stock:BookItem 1022)
+      )
+   
 
    )
    
 ) ;; end function
+
+
+(def-function _dbSeedTransaction ()
+  ;; function documentation
+  (
+    :documentation "Fill the Transaction entity with template entity object"
+    :examples "(dbSeedTransaction) -> (#<Transaction[1]* ...> #<Transaction[2]* ...)"
+    :post (> (length :result) 0)
+    :return-type 'list
+  )
+
+  ;; function body
+  (list
+    (make-instance 'payment-system:Transaction
+      :reference :subscription
+      :date (borrowing-system:make-tDate :month 6 :day 15 :year 2026)
+      :amount 20
+      :customer (find-by-oid 'users:Customer 1013)
+      )
+    (make-instance 'payment-system:Transaction
+      :reference :borrow-book
+      :date (borrowing-system:make-tDate :month 6 :day 15 :year 2026)
+      :amount 5
+      :customer (find-by-oid 'users:Customer 1013)
+      )
+    (make-instance 'payment-system:Transaction
+      :reference :subscription
+      :date (borrowing-system:make-tDate :month 6 :day 14 :year 2026)
+      :amount 20
+      :customer (find-by-oid 'users:Customer 1015)
+      )
+    (make-instance 'payment-system:Transaction
+      :reference :borrow-book
+      :date (borrowing-system:make-tDate :month 6 :day 18 :year 2026)
+      :amount 5
+      :customer (find-by-oid 'users:Customer 1015)
+      )
+    (make-instance 'payment-system:Transaction
+      :reference :subscription
+      :date (borrowing-system:make-tDate :month 4 :day 15 :year 2026)
+      :amount 20
+      :customer (find-by-oid 'users:Customer 1011)
+      )
+    (make-instance 'payment-system:Transaction
+      :reference :borrow-book
+      :date (borrowing-system:make-tDate :month 4 :day 16 :year 2026)
+      :amount 5
+      :customer (find-by-oid 'users:Customer 1011)
+      )
+    (make-instance 'payment-system:Transaction
+      :reference :penalty-late-return
+      :date (borrowing-system:make-tDate :month 6 :day 18 :year 2026)
+      :amount 5
+      :customer (find-by-oid 'users:Customer 1011)
+      )
+    (make-instance 'payment-system:Transaction
+      :reference :penalty-book-damaged
+      :date (borrowing-system:make-tDate :month 6 :day 18 :year 2026)
+      :amount 10
+      :customer (find-by-oid 'users:Customer 1011)
+      )
+
+    
+
+    
+   )
+   
+) ;; end function
+
 
 
 

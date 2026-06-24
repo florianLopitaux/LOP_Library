@@ -13,7 +13,7 @@
     :documentation "Get all Transactions associated with a specific customer"
     :examples "(findAllTransactionsFromCustomer 'customer1) -> (#<Transaction[5]* ...> #<Transaction [16]*  ...>)"
     :pre (not (equal customer nil))
-    :return-type 'list
+    :result-type list
   )
 
   ;; function body

@@ -3,28 +3,27 @@
   (:documentation "Package that manage stuff about book borrowing (borrow, return, ...)")
   (:languages :functional :oo :bis :rule :workflow :test)    ;;; delete languages not used here
   (:import
-    ;; PACKAGE DEPENDENCIES
     :users
+    :resources
     :stock
 
    )
   (:export
-    ;; DATATYPES
     tDate
+    make-tDate
 
     ;; CLASSES
     BorrowingRecord
+    get-start-date
+    get-due-date
+    get-is-returned
+    set-is-returned
+    get-customer
+    get-book
 
     ;; FUNCTIONS
     isBookItemAvailable
     borrowBookItem
     returnBookItem
-   
-    ;; REFORWARD EXPORT (ast to professor if there is another solution)
-    eCustomerRole
-    tFullName
-    tAddress
-    Customer
-    applyDiscount
    )
   )

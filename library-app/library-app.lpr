@@ -4,6 +4,7 @@
   :modules (list (make-instance 'module :name "users/users.component.lisp")
                  (make-instance 'module :name "users/users.datatype.bis.lisp")
                  (make-instance 'module :name "users/users.entity.bis.lisp")
+                 (make-instance 'module :name "users/users.rule.lisp")
                  (make-instance 'module :name "users/users.entity-manager.bis.lisp")
                  (make-instance 'module :name "users/users.service.bis.lisp")
                  (make-instance 'module :name "users/users.test.lisp")

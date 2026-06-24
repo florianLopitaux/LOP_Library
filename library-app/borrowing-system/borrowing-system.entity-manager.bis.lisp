@@ -13,7 +13,7 @@
     :documentation "Get all BorrowingRecords linked with a specific BookItem"
     :examples "(findAllRecordsFromBookItem 'item1) -> (#<BorrowingRecord[33]* ...> #<BorrowingRecord [45]*  ...>)"
     :pre (not (equal item nil))
-    :return-type 'list
+    :result-type list
   )
 
   ;; function body

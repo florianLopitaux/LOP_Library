@@ -2,18 +2,22 @@
   (:nicknames :resources)
   (:documentation "Package that relate to all types of resources in the library")
   (:languages :functional :oo :bis :rule :workflow :test)    ;;; delete languages not used here
-  (:import
-    ;; PACKAGE DEPENDENCIES
-
+  (:import  
+      ;;; no dependencies
+	  
    )
-  (:export  
+  (:export
     ;; DATATYPES
     eBookType
 
     ;; CLASSES
     BookReference
+    get-title
+    get-author
+    get-type
 
     ;; FUNCTIONS
     findAllResearchBookReferences
+    findAllNormalBookReferences
    )
   )

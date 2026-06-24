@@ -3,8 +3,10 @@
   (:documentation "Package that manage stuff about payments for the library (subscription, penalty, ...)")
   (:languages :functional :oo :bis :rule :workflow :test)    ;;; delete languages not used here
   (:import
-    ;; PACKAGE DEPENDENCIES
-    :borrowing-system
+   ;; PACKAGE DEPENDENCIES
+   :borrowing-system
+   :users
+
 
    )
   (:export

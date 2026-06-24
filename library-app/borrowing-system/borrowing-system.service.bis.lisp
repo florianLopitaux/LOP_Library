@@ -13,7 +13,6 @@
     :documentation "Check if a BookItem object is available or currently borrowed"
     :examples "(isBookItemAvailable 'item1) -> false, (isBookItemAvailable 'item2) -> true"
     :pre (not (equal item nil))
-    :return-type 'boolean
   )
 
   ;; function body
@@ -32,14 +31,14 @@
     :examples "(borrowBookItem 'item1) -> false, (borrowBookItem 'item2) -> true"
     :pre (not (equal item nil))
     :pre (isBookItemAvailable item)
-    :return-type 'BorrowingRecord
+    :result-type BorrowingRecord
   )
 
   ;; function body
-  (let* ((current-time (multiple-value-list (get-decoded-time)))
-       (today-day   (fourth current-time))
-       (today-month (fifth current-time))
-       (today-year  (sixth current-time)))
+  (let* ((current-time (cl:multiple-value-list (cl:get-decoded-time)))
+       (today-day   (cl:fourth current-time))
+       (today-month (cl:fifth current-time))
+       (today-year  (cl:sixth current-time)))
 
     (make-instance 'BorrowingRecord
       :start-date (make-tDate :month today-month :day today-day :year today-year)
@@ -64,7 +63,7 @@
   )
 
   ;; function body
-  (set-is-returned record true)
+  (set-is-returned true record)
 
 ) ;; end function
 
@@ -81,13 +80,11 @@
   (
     :documentation "Check if there is at least one record which still not returned from a list"
     :examples "(_checkAliveBorrowingRecords '()) -> false, (_checkAliveBorrowingRecords '()) -> true"
-    :pre (not (equal records nil))
-    :return-type 'boolean
   )
 
   ;; function body
   (cond ((= (length records) 0) true)
-        ((not (isReturned (first records))) false)
+        ((not (get-is-returned (first records))) false)
 
         (else (_checkAliveBorrowingRecords (rest records)))
   )
@@ -109,7 +106,7 @@
     :pre (>= day 1)
     :pre (<= day 31)
     :pre (>= year 2000) ;; we are a new library and we haven't invented the time machine yet.
-    :return-type 'tDate
+    :result-type tDate
   )
 
   ;; function body

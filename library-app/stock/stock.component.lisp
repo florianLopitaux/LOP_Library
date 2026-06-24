@@ -13,6 +13,8 @@
 
     ;; CLASSES
     BookItem
+    get-book-ref
+    get-state
 
     ;; FUNCTIONS
     findAllBookItemsFromBook

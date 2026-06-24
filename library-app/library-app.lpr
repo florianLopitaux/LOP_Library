@@ -21,20 +21,30 @@
                  (make-instance 'module :name "stock/stock.entity-manager.bis.lisp")
                  (make-instance 'module :name "stock/stock.service.bis.lisp")
                  (make-instance 'module :name "stock/stock.test.lisp")
-		     (make-instance 'module :name "borrowing-system/borrowing-system.component.lisp")
-                 (make-instance 'module :name "borrowing-system/borrowing-system.datatype.bis.lisp")
-                 (make-instance 'module :name "borrowing-system/borrowing-system.entity.bis.lisp")
-                 (make-instance 'module :name "borrowing-system/borrowing-system.entity-manager.bis.lisp")
-                 (make-instance 'module :name "borrowing-system/borrowing-system.service.bis.lisp")
-                 (make-instance 'module :name "borrowing-system/borrowing-system.test.lisp")
-		     (make-instance 'module :name "payment-system/payment-system.component.lisp")
-                 (make-instance 'module :name "payment-system/payment-system.datatype.bis.lisp")
-                 (make-instance 'module :name "payment-system/payment-system.entity.bis.lisp")
-                 (make-instance 'module :name "payment-system/payment-system.entity-manager.bis.lisp")
-                 (make-instance 'module :name "payment-system/payment-system.service.bis.lisp")
+                 (make-instance 'module :name
+                                "borrowing-system/borrowing-system.component.lisp")
+                 (make-instance 'module :name
+                                "borrowing-system/borrowing-system.datatype.bis.lisp")
+                 (make-instance 'module :name
+                                "borrowing-system/borrowing-system.entity.bis.lisp")
+                 (make-instance 'module :name
+                                "borrowing-system/borrowing-system.entity-manager.bis.lisp")
+                 (make-instance 'module :name
+                                "borrowing-system/borrowing-system.service.bis.lisp")
+                 (make-instance 'module :name
+                                "borrowing-system/borrowing-system.test.lisp")
+                 (make-instance 'module :name
+                                "payment-system/payment-system.component.lisp")
+                 (make-instance 'module :name
+                                "payment-system/payment-system.datatype.bis.lisp")
+                 (make-instance 'module :name
+                                "payment-system/payment-system.entity.bis.lisp")
+                 (make-instance 'module :name
+                                "payment-system/payment-system.entity-manager.bis.lisp")
+                 (make-instance 'module :name
+                                "payment-system/payment-system.service.bis.lisp")
                  (make-instance 'module :name "payment-system/payment-system.test.lisp")
-
-		     (make-instance 'module :name "config/config.component.lisp")
+                 (make-instance 'module :name "config/config.component.lisp")
                  (make-instance 'module :name "config/config.db.lisp")
                  (make-instance 'module :name "config/config.init.lisp"))
   :projects (list (make-instance 'project-module :name "../better_lang/LOP.lpr"

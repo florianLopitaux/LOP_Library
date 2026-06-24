@@ -5,6 +5,31 @@
 ;;; EXPORT SERVICE FUNCTIONS
 ;;; =====================================
 
+(def-function getCustomerRating (
+    (cust :type Customer :documentation "The customer instance")
+    (borrow-books :type number :documentation "The number of book borrowed by the customer")
+    (late-books :type number :documentation "The number of book returned late")
+    (damage-books :type number :documentation "The number of book returned damage")
+  )
+  ;; function documentation
+  (
+    :documentation "Get the business rules rating of a given customer."
+    :examples "(getCustomerRating goodCustomer) -> :high, (getCustomerRating badCustomer) -> :low"
+    :pre (not (equal cust nil))
+    :result-type eCustomerRating   
+  )
+
+  ;; function body
+  (first (query ?r (is ?c cust)
+            (is ?b borrow-books)
+            (is ?l late-books)
+            (is ?d damage-books)
+            (customer-rating ?c ?b ?l ?d ?r)))
+
+) ;; end function
+;; to test the function : (getCustomerRating (find-by-oid 'Customer 1014) 10 2 0)
+
+
 (def-function applyDiscount (
     (customer :type Customer :documentation "The Customer instance")
     (amount :type number :documentation "The amount to apply the reduction before paying")

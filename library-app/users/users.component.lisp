@@ -25,6 +25,7 @@
 
     ;; FUNCTIONS
     createCustomer
+    getCustomerRating
     applyDiscount
     findAllStudents
     findAllProfessors

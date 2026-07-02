@@ -45,6 +45,26 @@
 ) ;; end function
 
 
+(def-function findAllNormalRecordsFromCustomer (
+    (cust :type Customer :description "The Customer instance to use")
+  )
+  ;; function documentation
+  (
+    :documentation "Get all BorrowingRecords with no problem for the return and linked with a specific Customer"
+    :examples "(findAllNormalRecordsFromCustomer 'customer1) -> (#<BorrowingRecord[33]* ...> #<BorrowingRecord [45]*  ...>)"
+    :pre (not (equal cust nil))
+    :result-type list
+  )
+
+  ;; function body
+  (query ?br
+    (is ?c cust)
+    (db BorrowingRecord ?br customer ?c return-case :normal)
+  )
+
+) ;; end function
+
+
 (def-function findAllLateRecordsFromCustomer (
     (cust :type Customer :description "The Customer instance to use")
   )

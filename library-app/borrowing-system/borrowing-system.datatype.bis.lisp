@@ -8,7 +8,13 @@
 (def-struct tDate month day year)
 
 
+(def-enum-type eCustomerRating
+    (:low :medium :high)
+
+  "Rating of a customer")
+
+
 (def-enum-type eReturnCase 
     (:normal :late :damage :late-damage)
 
-  "state of the returned book")
+  "State of the returned book")

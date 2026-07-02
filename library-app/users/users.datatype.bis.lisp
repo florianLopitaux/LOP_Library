@@ -16,11 +16,6 @@
   "Role of a costumer")
 
 
-(def-enum-type eCustomerRating
-    (:low :medium :high)
-  "Rating of a customer")
-
-
 (def-struct tFullName first-name last-name)
 
 

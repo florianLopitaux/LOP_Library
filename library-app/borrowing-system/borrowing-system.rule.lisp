@@ -32,10 +32,10 @@ Arguments:
 All values in-between are considered :medium
 ")
 
-;; score < 0.3 -> :low
-;; between [0.3 : 0.75] -> :medium
+;; score < 0 -> :low
+;; between [0 : 0.75] -> :medium
 ;; score > 0.75 -> :high
-(<- (customer-mapping-bounds 0.3 0.75)!)
+(<- (customer-mapping-bounds 0 0.75)!)
 
 
 
@@ -47,15 +47,14 @@ TODO documentation
 (<- (customerRating ?cust ?rating)
     ;; get data from customer to calcul the score
     (is ?nb-borrow (length (findAllRecordsFromCustomer ?cust)))
+    (is ?nb-normal (length (findAllNormalRecordsFromCustomer ?cust)))
     (is ?nb-late (length (findAllLateRecordsFromCustomer ?cust)))
     (is ?nb-damage (length (findAllDamageRecordsFromCustomer ?cust)))
-
-    ;; compute number of perfect returned book
-    (is ?nb-normal (- ?nb-borrow (+ ?nb-late ?nb-damage)))
-    ;; +1 / prefect returned  |  -2 / late  |  -5 / damage
+    
+    ;; +1 / normal return  |  -2 / late  |  -5 / damage
     (is ?points (- ?nb-normal (+ (* ?nb-late 2) (* ?nb-damage 5))))
     ;; compute final score with average ratio
-    (is ?ratio (abs (/ ?points ?nb-borrow)))
+    (is ?ratio (/ ?points ?nb-borrow))
 
     ;; get mapping bounds to return from final score computed
     (customer-mapping ?ratio ?rating))

@@ -5,6 +5,26 @@
 ;;; SERVICE FUNCTIONS
 ;;; =====================================
 
+(def-function getCustomerRating (
+    (cust :type Customer :documentation "The customer instance")
+  )
+  ;; function documentation
+  (
+    :documentation "Get the business rules rating of a given customer."
+    :examples "(getCustomerRating goodCustomer) -> :high, (getCustomerRating badCustomer) -> :low"
+    :pre (not (equal cust nil))
+    :result-type eCustomerRating   
+  )
+
+  ;; function body
+  (first (query ?result
+            (is ?c cust)
+            (customerRating ?c ?result)
+  ))
+
+) ;; end function
+
+
 (def-function isBookItemAvailable (
     (item :type BookItem :description "The BookItem instance to check")
   )

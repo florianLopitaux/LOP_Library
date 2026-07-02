@@ -1,4 +1,4 @@
-(in-package :users)
+(in-package :borrowing-system)
 
 
 ;;; =====================================
@@ -32,45 +32,30 @@ Arguments:
 All values in-between are considered :medium
 ")
 
-;; score < 1.5 -> :low
-;; between [1.5 : 2.5] -> :medium
-;; score > 2.5 -> :high
+;; score < 0.3 -> :low
+;; between [0.3 : 0.75] -> :medium
+;; score > 0.75 -> :high
 (<- (customer-mapping-bounds 0.3 0.75)!)
 
 
-(<---(rating ?category ?value ?rating)
-"
-Fact for specifying rating values
-Arguments:
-?category : atom –rating category, e.g., :occupation
-?value  -attribute value, e.g., :manual-physical
-?rating : number -rating if ?attribute has ?value
-")
 
-(<- (rating role :prof 0.2)!)
-
-(<- (rating borrowedBook :perfect 1)!)
-(<- (rating borrowedBook :late -2)!)
-(<- (rating borrowedBook :damage -5)!)
-
-(<- (rating ?category ?value 0)!)
-
-
-(<--- (customer-rating ?cust ?borrow-books ?late-books ?damage-books ?rating)
+(<--- (customerRating ?cust ?rating)
  "
 TODO documentation
  ")
 
-(<- (customer-rating ?cust ?borrow-books ?late-books ?damage-books ?rating)    
-    ;; get score for customer role
-    (rating role (get-role ?cust) ?bonus-role)
+(<- (customerRating ?cust ?rating)
+    ;; get data from customer to calcul the score
+    (is ?nb-borrow (length (findAllRecordsFromCustomer ?cust)))
+    (is ?nb-late (length (findAllLateRecordsFromCustomer ?cust)))
+    (is ?nb-damage (length (findAllDamageRecordsFromCustomer ?cust)))
+
     ;; compute number of perfect returned book
-    (is ?perfect-books (- ?borrow-books (+ ?late-books ?damage-books)))
+    (is ?nb-normal (- ?nb-borrow (+ ?nb-late ?nb-damage)))
     ;; +1 / prefect returned  |  -2 / late  |  -5 / damage
-    (is ?points (- ?perfect-books (+ (* ?late-books 2) (* ?damage-books 5))))
-    ;; compute ratio
-    (is ?ratio (/ ?points ?borrow-books))
-    ;; final score
-    (is ?score (+ ?bonus-role ?ratio))
-    ;; get mapping bounds (from final score)
-    (customer-mapping ?score ?rating))
+    (is ?points (- ?nb-normal (+ (* ?nb-late 2) (* ?nb-damage 5))))
+    ;; compute final score with average ratio
+    (is ?ratio (abs (/ ?points ?nb-borrow)))
+
+    ;; get mapping bounds to return from final score computed
+    (customer-mapping ?ratio ?rating))

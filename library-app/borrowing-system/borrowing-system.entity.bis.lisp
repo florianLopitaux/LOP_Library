@@ -12,7 +12,11 @@
       :type 'boolean
       :initform false
       :documentation "boolean to know if the book has already been return or not")
-     
+     (return-case
+      :type 'eReturnCase
+      :initform :normal
+      :documentation "The condition of the returned book borrow (could be late, damage, ...)")
+
      (customer
       :type 'customer
       :documentation "The customer instance who borrowed the book")
@@ -23,4 +27,3 @@
       
   (:documentation "Record of a book borrowed by a customer")
   )
-

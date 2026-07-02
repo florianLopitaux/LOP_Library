@@ -202,12 +202,26 @@
       :book (find-by-oid 'stock:BookItem 1023)
       )
     (make-instance 'borrowing-system:BorrowingRecord
+      :start-date (borrowing-system:make-tDate :month 5 :day 18 :year 2026)
+      :due-date (borrowing-system:make-tDate :month 6 :day 18 :year 2026)
+      :is-returned true
+      :return-case :late
+      :customer (find-by-oid 'users:Customer 1015)
+      :book (find-by-oid 'stock:BookItem 1022)
+      )
+    (make-instance 'borrowing-system:BorrowingRecord
+      :start-date (borrowing-system:make-tDate :month 3 :day 12 :year 2026)
+      :due-date (borrowing-system:make-tDate :month 4 :day 12 :year 2026)
+      :is-returned true
+      :return-case :late-damage
+      :customer (find-by-oid 'users:Customer 1015)
+      :book (find-by-oid 'stock:BookItem 1023)
+      )
+    (make-instance 'borrowing-system:BorrowingRecord
       :is-returned true
       :customer (find-by-oid 'users:Customer 1011)
       :book (find-by-oid 'stock:BookItem 1022)
       )
-   
-
    )
    
 ) ;; end function

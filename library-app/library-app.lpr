@@ -2,47 +2,47 @@
 
 (define-project :name :library-app
   :modules (list (make-instance 'module :name "users/users.component.lisp")
-                 (make-instance 'module :name "users/users.datatype.bis.lisp")
-                 (make-instance 'module :name "users/users.entity.bis.lisp")
-                 (make-instance 'module :name "users/users.entity-manager.bis.lisp")
-                 (make-instance 'module :name "users/users.service.bis.lisp")
+                 (make-instance 'module :name "users/users.datatype.lisp")
+                 (make-instance 'module :name "users/users.entity.lisp")
+                 (make-instance 'module :name "users/users.entity-manager.lisp")
+                 (make-instance 'module :name "users/users.service.lisp")
                  (make-instance 'module :name "users/users.test.lisp")
                  (make-instance 'module :name "resources/resources.component.lisp")
-                 (make-instance 'module :name "resources/resources.datatype.bis.lisp")
-                 (make-instance 'module :name "resources/resources.entity.bis.lisp")
+                 (make-instance 'module :name "resources/resources.datatype.lisp")
+                 (make-instance 'module :name "resources/resources.entity.lisp")
                  (make-instance 'module :name
-                                "resources/resources.entity-manager.bis.lisp")
-                 (make-instance 'module :name "resources/resources.service.bis.lisp")
+                                "resources/resources.entity-manager.lisp")
+                 (make-instance 'module :name "resources/resources.service.lisp")
                  (make-instance 'module :name "resources/resources.test.lisp")
                  (make-instance 'module :name "stock/stock.component.lisp")
-                 (make-instance 'module :name "stock/stock.datatype.bis.lisp")
-                 (make-instance 'module :name "stock/stock.entity.bis.lisp")
-                 (make-instance 'module :name "stock/stock.entity-manager.bis.lisp")
-                 (make-instance 'module :name "stock/stock.service.bis.lisp")
+                 (make-instance 'module :name "stock/stock.datatype.lisp")
+                 (make-instance 'module :name "stock/stock.entity.lisp")
+                 (make-instance 'module :name "stock/stock.entity-manager.lisp")
+                 (make-instance 'module :name "stock/stock.service.lisp")
                  (make-instance 'module :name "stock/stock.test.lisp")
                  (make-instance 'module :name
                                 "borrowing-system/borrowing-system.component.lisp")
                  (make-instance 'module :name
-                                "borrowing-system/borrowing-system.datatype.bis.lisp")
+                                "borrowing-system/borrowing-system.datatype.lisp")
                  (make-instance 'module :name
-                                "borrowing-system/borrowing-system.entity.bis.lisp")
+                                "borrowing-system/borrowing-system.entity.lisp")
                  (make-instance 'module :name
-                                "borrowing-system/borrowing-system.entity-manager.bis.lisp")
+                                "borrowing-system/borrowing-system.entity-manager.lisp")
                  (make-instance 'module :name "borrowing-system/borrowing-system.rule.lisp")
                  (make-instance 'module :name
-                                "borrowing-system/borrowing-system.service.bis.lisp")
+                                "borrowing-system/borrowing-system.service.lisp")
                  (make-instance 'module :name
                                 "borrowing-system/borrowing-system.test.lisp")
                  (make-instance 'module :name
                                 "payment-system/payment-system.component.lisp")
                  (make-instance 'module :name
-                                "payment-system/payment-system.datatype.bis.lisp")
+                                "payment-system/payment-system.datatype.lisp")
                  (make-instance 'module :name
-                                "payment-system/payment-system.entity.bis.lisp")
+                                "payment-system/payment-system.entity.lisp")
                  (make-instance 'module :name
-                                "payment-system/payment-system.entity-manager.bis.lisp")
+                                "payment-system/payment-system.entity-manager.lisp")
                  (make-instance 'module :name
-                                "payment-system/payment-system.service.bis.lisp")
+                                "payment-system/payment-system.service.lisp")
                  (make-instance 'module :name "payment-system/payment-system.test.lisp")
                  (make-instance 'module :name "config/config.component.lisp")
                  (make-instance 'module :name "config/config.db.lisp")

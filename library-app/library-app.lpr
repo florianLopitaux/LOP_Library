@@ -48,7 +48,15 @@
                  (make-instance 'module :name "config/config.db.lisp")
                  (make-instance 'module :name "config/config.init.lisp")
                  (make-instance 'form-module :name "gui/library-menu-form"
-                                :finder-function 'library-menu-form :has-pixmap-file
+                                :finder-function 'library-menu-form :has-pixmap-file nil)
+                 (make-instance 'form-module :name "gui/library-stock-form"
+                                :finder-function 'library-stock-form :has-pixmap-file
+                                nil)
+                 (make-instance 'form-module :name "gui/library-customer-form"
+                                :finder-function 'library-customer-form :has-pixmap-file
+                                nil)
+                 (make-instance 'form-module :name "gui/library-borrow-form"
+                                :finder-function 'library-borrow-form :has-pixmap-file
                                 nil))
   :projects (list (make-instance 'project-module :name "../better_lang/LOP.lpr"
                                  :show-modules nil))

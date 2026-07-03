@@ -15,19 +15,22 @@
 ;;; =====================================
 
 (defun library-menu-stock-btn-on-click (dialog widget)
-  (declare (dialog widget))
-  (print "je click sur stock button")
+  (declare (ignorable dialog widget))
+  (format t "je click sur stock button")
+  (make-library-stock-form)
   
-  ) ;; end function
+  t) ;; end function
 
 (defun library-menu-customer-btn-on-click (dialog widget)
-  (declare (dialog widget))
+  (declare (ignorable dialog widget))
   (print "je click sur customer button")
+  (make-library-customer-form)
   
-  ) ;; end function
+  t) ;; end function
 
 (defun library-menu-borrowing-btn-on-click (dialog widget)
-  (declare (dialog widget))
+  (declare (ignorable dialog widget))
   (print "je click sur borrowing button")
+  (make-library-borrow-form)
   
-  ) ;; end function
+  t) ;; end function

@@ -1,0 +1,54 @@
+;;; Define :library-menu-form
+ 
+(in-package :common-graphics-user)
+
+;; The finder-function, which returns the window if it already
+;; exists, and otherwise creates and returns it.
+;; Call this function if you need only one copy of this window,
+;; and that window is a non-owned top-level window.
+(defun library-menu-form ()
+  (find-or-make-application-window :library-menu-form 'make-library-menu-form))
+ 
+;; The maker-function, which always creates a new window.
+;; Call this function if you need more than one copy,
+;; or the single copy should have a parent or owner window.
+;; (Pass :owner to this function; :parent is for compatibility.)
+(defun make-library-menu-form
+    (&key parent (owner (or parent (screen *system*))) exterior
+     (interior (make-box 877 147 1275 545)) (name :library-menu-form)
+     (title "Library Menu Form") (border :frame) (child-p t) form-p)
+  (let ((owner
+         (make-window name :owner owner
+           :class 'library-menu-dialog
+           :child-p child-p
+           :exterior exterior
+           :interior interior
+           :border border
+           :close-button t
+           :font (make-font-ex :swiss "Arial / ANSI" 15)
+           :form-state :normal
+           :maximize-button t
+           :minimize-button t
+           :name :library-menu-form
+           :pop-up nil
+           :resizable t
+           :scrollbars nil
+           :state :normal
+           :system-menu t
+           :title title
+           :title-bar t
+           :dialog-items (make-library-menu-form-widgets)
+           :form-p form-p
+           :form-package-name nil)))
+    owner))
+
+(defun make-library-menu-form-widgets ()
+  (list (make-instance 'button :font (make-font-ex nil "Arial" 15) :left 114 :name
+                       :stock-btn :on-click 'library-menu-stock-btn-on-click :title
+                       "Manage Library Stock" :top 44 :width 170)
+        (make-instance 'button :font (make-font-ex nil "Arial" 15) :left 131 :name
+                       :customer-btn :on-click 'library-menu-customer-btn-on-click :title
+                       "Customer Space" :top 117 :width 129)
+        (make-instance 'button :font (make-font-ex nil "Arial" 15) :left 131 :name
+                       :borrow-btn :on-click 'library-menu-borrowing-btn-on-click :title
+                       "Borrowing a book" :top 203 :width 129)))

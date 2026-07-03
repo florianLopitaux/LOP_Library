@@ -10,8 +10,7 @@
                  (make-instance 'module :name "resources/resources.component.lisp")
                  (make-instance 'module :name "resources/resources.datatype.lisp")
                  (make-instance 'module :name "resources/resources.entity.lisp")
-                 (make-instance 'module :name
-                                "resources/resources.entity-manager.lisp")
+                 (make-instance 'module :name "resources/resources.entity-manager.lisp")
                  (make-instance 'module :name "resources/resources.service.lisp")
                  (make-instance 'module :name "resources/resources.test.lisp")
                  (make-instance 'module :name "stock/stock.component.lisp")
@@ -28,7 +27,8 @@
                                 "borrowing-system/borrowing-system.entity.lisp")
                  (make-instance 'module :name
                                 "borrowing-system/borrowing-system.entity-manager.lisp")
-                 (make-instance 'module :name "borrowing-system/borrowing-system.rule.lisp")
+                 (make-instance 'module :name
+                                "borrowing-system/borrowing-system.rule.lisp")
                  (make-instance 'module :name
                                 "borrowing-system/borrowing-system.service.lisp")
                  (make-instance 'module :name
@@ -46,7 +46,10 @@
                  (make-instance 'module :name "payment-system/payment-system.test.lisp")
                  (make-instance 'module :name "config/config.component.lisp")
                  (make-instance 'module :name "config/config.db.lisp")
-                 (make-instance 'module :name "config/config.init.lisp"))
+                 (make-instance 'module :name "config/config.init.lisp")
+                 (make-instance 'form-module :name "gui/library-menu-form"
+                                :finder-function 'library-menu-form :has-pixmap-file
+                                nil))
   :projects (list (make-instance 'project-module :name "../better_lang/LOP.lpr"
                                  :show-modules nil))
   :libraries nil
@@ -54,7 +57,7 @@
   :distributed-files nil
   :internally-loaded-files nil
   :project-package-name :common-graphics-user
-  :main-form nil
+  :main-form 'library-menu-form
   :compilation-unit t
   :concatenate-project-fasls nil
   :verbose nil

@@ -15,15 +15,15 @@
 ;; (Pass :owner to this function; :parent is for compatibility.)
 (defun make-library-customer-form
     (&key parent (owner (or parent (screen *system*))) exterior
-     (interior (make-box 456 125 1272 446)) (name :library-customer-form)
-     (title "Library Customer Form") (border :frame) (child-p nil) form-p)
+     (interior (make-box 195 70 1053 534)) (name :library-customer-form)
+     (title "Library Customer Space System") (border :frame) (child-p t) form-p)
   (let ((owner
          (make-window name :owner owner
            :class 'library-customer-dialog
+           :child-p child-p
            :exterior exterior
            :interior interior
            :border border
-           :child-p child-p
            :close-button t
            :font (make-font-ex :swiss "Arial / ANSI" 15)
            :form-state :normal
@@ -37,8 +37,140 @@
            :system-menu t
            :title title
            :title-bar t
+           :dialog-items (make-library-customer-form-widgets)
            :form-p form-p
            :form-package-name nil)))
     owner))
 
-(defun make-library-customer-form-widgets () nil)
+(defun make-library-customer-form-widgets ()
+  (list
+   ;; =========================================================================
+   ;; 1. COMPOSANTS INDIVIDUELS (Dessinés en premier)
+   ;; =========================================================================
+   
+   ;; --- SECTION "LOGIN" (En haut) ---
+   (make-instance 'static-text 
+     :name :select-customer-label 
+     :value "Choose Customer:" 
+     :left 45 :top 85 :width 130 :height 20
+     :font (make-font-ex nil "Arial" 10))
+   
+   (make-instance 'combo-box 
+     :name :active-customer-combo 
+     :left 180 :top 82 :width 450 :height 25
+     :range (list "No Customer Selected")
+     :value "No Customer Selected"
+     :font (make-font-ex nil "Arial" 10))
+   
+   (make-instance 'button 
+     :name :login-button 
+     :title "Select & Login" 
+     :left 650 :top 80 :width 160 :height 28
+     :on-change 'customer-login-button-on-change
+     :font (make-font-ex nil "Arial" 10))
+
+   ;; --- SECTION "REGISTER" : Colonne Gauche (Identity & Meta) ---
+   (make-instance 'static-text 
+     :name :first-name-label :value "First Name:" 
+     :left 45 :top 188 :width 90 :height 20 :font (make-font-ex nil "Arial" 10))
+   (make-instance 'editable-text 
+     :name :first-name-field :value "" 
+     :left 145 :top 185 :width 240 :height 25 :font (make-font-ex nil "Arial" 10))
+   
+   (make-instance 'static-text 
+     :name :last-name-label :value "Last Name:" 
+     :left 45 :top 228 :width 90 :height 20 :font (make-font-ex nil "Arial" 10))
+   (make-instance 'editable-text 
+     :name :last-name-field :value "" 
+     :left 145 :top 225 :width 240 :height 25 :font (make-font-ex nil "Arial" 10))
+   
+   (make-instance 'static-text 
+     :name :email-label :value "Email:" 
+     :left 45 :top 268 :width 90 :height 20 :font (make-font-ex nil "Arial" 10))
+   (make-instance 'editable-text 
+     :name :email-field :value "" 
+     :left 145 :top 265 :width 240 :height 25 :font (make-font-ex nil "Arial" 10))
+
+   (make-instance 'static-text 
+     :name :role-label :value "Role:" 
+     :left 45 :top 308 :width 90 :height 20 :font (make-font-ex nil "Arial" 10))
+   (make-instance 'combo-box 
+     :name :role-dropdown 
+     :range (list :normal :student :professor) :value :normal
+     :left 145 :top 305 :width 240 :height 25 :font (make-font-ex nil "Arial" 10))
+   
+   (make-instance 'static-text 
+     :name :status-label :value "Status:" 
+     :left 45 :top 348 :width 90 :height 20 :font (make-font-ex nil "Arial" 10))
+   (make-instance 'combo-box 
+     :name :status-dropdown 
+     :range (list :active :disable) :value :disable
+     :left 145 :top 345 :width 240 :height 25 :font (make-font-ex nil "Arial" 10))
+
+   ;; --- SECTION "REGISTER" : Colonne Droite (Address) ---
+   (make-instance 'static-text 
+     :name :street-label :value "Street Address:" 
+     :left 430 :top 188 :width 110 :height 20 :font (make-font-ex nil "Arial" 10))
+   (make-instance 'editable-text 
+     :name :street-field :value "" 
+     :left 550 :top 185 :width 260 :height 25 :font (make-font-ex nil "Arial" 10))
+   
+   (make-instance 'static-text 
+     :name :zip-label :value "Zip Code:" 
+     :left 430 :top 228 :width 110 :height 20 :font (make-font-ex nil "Arial" 10))
+   (make-instance 'editable-text 
+     :name :zip-field :value "" 
+     :left 550 :top 225 :width 260 :height 25 :font (make-font-ex nil "Arial" 10))
+   
+   (make-instance 'static-text 
+     :name :city-label :value "City:" 
+     :left 430 :top 268 :width 110 :height 20 :font (make-font-ex nil "Arial" 10))
+   (make-instance 'editable-text 
+     :name :city-field :value "" 
+     :left 550 :top 265 :width 260 :height 25 :font (make-font-ex nil "Arial" 10))
+   
+   (make-instance 'static-text 
+     :name :country-label :value "Country:" 
+     :left 430 :top 308 :width 110 :height 20 :font (make-font-ex nil "Arial" 10))
+   (make-instance 'editable-text 
+     :name :country-field :value "" 
+     :left 550 :top 305 :width 260 :height 25 :font (make-font-ex nil "Arial" 10))
+
+   ;; --- Bouton de Soumission ---
+   (make-instance 'button 
+     :name :register-button 
+     :title "Register New Customer" 
+     :left 430 :top 385 :width 380 :height 35
+     :on-change 'customer-register-button-on-change
+     :font (make-font-ex nil "Arial" 11))
+
+   ;; =========================================================================
+   ;; 2. LES CONTENEURS GRAPHISQUES (Instanciés à la fin avec leurs enfants)
+   ;; =========================================================================
+   
+   ;; Le cadre de la section Login
+   (make-instance 'group-box :contained-widgets
+                  (list :select-customer-label :active-customer-combo :login-button)
+                  :font (make-font-ex nil "Arial" 11) :height 85 :left 25 :top 45 
+                  :name :login-group :title "Select Active Customer (Login)" :width 810)
+
+   ;; Le cadre de la section Register
+   (make-instance 'group-box :contained-widgets
+                  (list :first-name-label :first-name-field :last-name-label :last-name-field
+                        :email-label :email-field :role-label :role-dropdown
+                        :status-label :status-dropdown :street-label :street-field
+                        :zip-label :zip-field :city-label :city-field :country-label :country-field
+                        :register-button)
+                  :font (make-font-ex nil "Arial" 11) :height 295 :left 25 :top 145 
+                  :name :register-group :title "Register New Customer" :width 810)
+
+   ;; Le grand cadre principal qui englobe TOUT (y compris les deux sous-cadres)
+   (make-instance 'group-box :contained-widgets
+                  (list :login-group :register-group :select-customer-label :active-customer-combo 
+                        :login-button :first-name-label :first-name-field :last-name-label 
+                        :last-name-field :email-label :email-field :role-label :role-dropdown 
+                        :status-label :status-dropdown :street-label :street-field :zip-label 
+                        :zip-field :city-label :city-field :country-label :country-field 
+                        :register-button)
+                  :font (make-font-ex nil "Arial" 14) :height 445 :left 10 :top 10 
+                  :name :customer-space-container :title "Customer Management Space" :width 840)))

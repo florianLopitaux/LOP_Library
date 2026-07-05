@@ -5,6 +5,23 @@
 ;;; SERVICE FUNCTIONS
 ;;; =====================================
 
+(def-function getAllBookItemsStringFormat ()
+  ;; function body
+  (collect (lambda (x) (format nil "~A ~C ~A" (get-oid x) #\~ (get-title (get-book-ref x)))) (find-all 'BookItem))
+
+) ;; end function
+
+(def-function getBookItemByStringFormat (string-book-item)
+  ;; function body
+  (let* ((pos (cl:position #\~ string-book-item))
+       (book-oid (cl:parse-integer (cl:subseq string-book-item 0 pos))))
+    
+    (find-by-oid 'BookItem book-oid)
+  )
+
+) ;; end function
+
+
 (def-function createBookItem (
     (book-ref :type BookReference :documentation "The reference of this new book copy")
     &key

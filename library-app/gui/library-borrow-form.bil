@@ -53,7 +53,7 @@
         (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :height 20 :left
                        310 :name :borrow-customer-label :top 85 :value "Select Customer:"
                        :width 110)
-        (make-instance 'combo-box :font (make-font-ex nil "Arial" 10) :height 25 :left
+        (make-instance 'combo-box :font (make-font-ex nil "Arial" 10) :height 100 :left
                        430 :name :borrow-customer-combo :range
                        (list "No Customer Selected") :top 82 :value
                        "No Customer Selected" :width 395)

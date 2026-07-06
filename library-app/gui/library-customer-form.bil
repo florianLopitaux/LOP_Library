@@ -46,7 +46,7 @@
   (list (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :height 20 :left
                        45 :name :select-customer-label :top 85 :value "Choose Customer:"
                        :width 130)
-        (make-instance 'combo-box :font (make-font-ex nil "Arial" 10) :height 25 :left
+        (make-instance 'combo-box :font (make-font-ex nil "Arial" 10) :height 100 :left
                        180 :name :active-customer-combo :range
                        (list "No Customer Selected") :top 82 :value
                        "No Customer Selected" :width 450)
@@ -68,7 +68,7 @@
                        :left 145 :name :email-field :top 265 :value "" :width 240)
         (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :height 20 :left
                        45 :name :role-label :top 308 :value "Role:" :width 90)
-        (make-instance 'combo-box :font (make-font-ex nil "Arial" 10) :height 25 :left
+        (make-instance 'combo-box :font (make-font-ex nil "Arial" 10) :height 100 :left
                        145 :name :role-dropdown :range (list :normal :student :professor)
                        :top 305 :value :normal :width 240)
         (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :height 20 :left

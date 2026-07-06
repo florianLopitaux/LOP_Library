@@ -18,19 +18,19 @@
 
 (def-test apply-discount-professor-test
   (let ((customer (make-instance 'Customer :role :professor)))
-    (assert-equal 50.0 (applyDiscount customer 100.0))
+    (assert-equal 50.0 (applyCustomerDiscount customer 100.0))
   )
 )
 
 (def-test apply-discount-student-test
   (let ((customer (make-instance 'Customer :role :student)))
-    (assert-equal 20.0 (applyDiscount customer 100.0))
+    (assert-equal 20.0 (applyCustomerDiscount customer 100.0))
   )
 )
 
 (def-test apply-discount-normal-test
   (let ((customer (make-instance 'Customer :role :normal)))
-    (assert-equal 100.0 (applyDiscount customer 100.0))
+    (assert-equal 100.0 (applyCustomerDiscount customer 100.0))
   )
 )
 

@@ -27,7 +27,7 @@
     (transaction (make-instance 'Transaction
         :reference payment-reason
         :date (make-tDate :month today-month :day today-day :year today-year)
-        :amount (applyDiscount customer (_getPrice payment-reason))
+        :amount (applyCustomerDiscount customer (_getPrice payment-reason))
         :customer customer)))
 
     (format t "~A has paid a ~A.~%" customer payment-reason)

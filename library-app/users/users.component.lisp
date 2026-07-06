@@ -29,7 +29,8 @@
     customerToStringFormat
     customerListToStringFormat
     customerFromStringFormat
-    applyDiscount
+    applyCustomerDiscount
+    applyRoleDiscount
     findAllStudents
     findAllProfessors
     findAllActiveCustomers

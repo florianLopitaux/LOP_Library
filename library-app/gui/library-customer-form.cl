@@ -66,6 +66,18 @@
 t) ;; end function
 
 
+(defun customer-role-on-change (widget new-value old-value)
+  ;; function body
+  (declare (ignorable widget new-value old-value))
+  (let* ((dialog (parent widget))
+    (price-field (find-component :price-field dialog))
+    )
+  
+  (setf (value price-field) (users:applyRoleDiscount new-value 20))
+  )
+
+t) ;; end function
+
 (defun customer-register-button-on-click (dialog widget)
   ;; function body
   (declare (ignorable dialog widget))

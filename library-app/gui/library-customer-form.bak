@@ -26,7 +26,7 @@
            :border border
            :close-button t
            :font (make-font-ex :swiss "Arial / ANSI" 15)
-           :form-state :normal
+           :form-state :shrunk
            :maximize-button t
            :minimize-button t
            :name :library-customer-form
@@ -46,8 +46,9 @@
   (list (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :height 20 :left
                        45 :name :select-customer-label :top 85 :value "Choose Customer:")
         (make-instance 'combo-box :font (make-font-ex nil "Arial" 10) :left 161 :name
-                       :customer-dropdown :range (list "No Customer Selected") :top 82
-                       :value "No Customer Selected" :width 250)
+                       :customer-dropdown :on-change 'customer-details-on-change :range
+                       (list "No Customer Selected") :top 82 :value
+                       "No Customer Selected" :width 250)
         (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :height 20 :left
                        45 :name :first-name-label :top 314 :value "First Name:" :width
                        90)
@@ -101,9 +102,9 @@
         (make-instance 'editable-text :font (make-font-ex nil "Arial" 10) :left 161 :name
                        :rating-field :read-only t :top 121 :value "" :width 120)
         (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :left 45 :name
-                       :nb-borrow-label :top 165 :value "Borrow Count:")
+                       :borrow-label :top 165 :value "Borrow Count:")
         (make-instance 'editable-text :font (make-font-ex nil "Arial" 10) :left 161 :name
-                       :nb-borrow-field :read-only t :top 161 :value "" :width 120)
+                       :borrow-field :read-only t :top 161 :value "" :width 120)
         (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :left 45 :name
                        :late-label :top 205 :value "Late Returns: " :width 78)
         (make-instance 'editable-text :font (make-font-ex nil "Arial" 10) :left 123 :name

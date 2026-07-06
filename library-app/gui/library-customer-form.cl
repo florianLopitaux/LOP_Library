@@ -17,7 +17,16 @@
     (customers (bis:find-all 'users:Customer))
     )
   
-  (setf (range customer-dropdown) (functional:add "No Customer Selected" (users:toListStringFormat customers)))
+  (setf (range customer-dropdown) (functional:add "No Customer Selected" (users:customerListToStringFormat customers)))
+  )
+
+) ;; end function
+
+(defun extractRecordsCount (records)
+  ;; function body
+  (cond
+    ((equal records nil) 0)
+    (functional:else (length records))
   )
 
 ) ;; end function
@@ -28,6 +37,33 @@
   (fillCustomerDropdown dialog)
 
 ) ;; end function
+
+
+(defun customer-details-on-change (widget new-value old-value)
+  ;; function body
+  (declare (ignorable widget new-value old-value))
+  (let* ((dialog (parent widget))
+    (rating-field (find-component :rating-field dialog))
+    (borrow-count-field (find-component :borrow-field dialog))
+    (late-count-field (find-component :late-field dialog))
+    (damage-count-field (find-component :damage-field dialog))
+    (history-field (find-component :history-field dialog))
+    )
+  
+  (cond
+    ((equal new-value "No Customer Selected") nil)
+    (functional:else
+      (let ((customer (users:customerFromStringFormat new-value)))
+      
+      (setf (value rating-field) (borrowing-system:getCustomerRating customer))
+      (setf (value borrow-count-field) (extractRecordsCount (borrowing-system:findAllRecordsFromCustomer customer)))
+      (setf (value late-count-field) (extractRecordsCount (borrowing-system:findAllLateRecordsFromCustomer customer)))
+      (setf (value damage-count-field) (extractRecordsCount (borrowing-system:findAllDamageRecordsFromCustomer customer)))
+      (setf (value history-field) (borrowing-system:toHistoryStringFormat (borrowing-system:findAllRecordsFromCustomer customer)))
+      )
+    )
+  ))
+t) ;; end function
 
 
 (defun customer-register-button-on-click (dialog widget)

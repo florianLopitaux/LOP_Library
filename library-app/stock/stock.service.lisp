@@ -5,13 +5,25 @@
 ;;; SERVICE FUNCTIONS
 ;;; =====================================
 
-(def-function getAllBookItemsStringFormat ()
+(def-function bookToStringFormat (
+    (book :type BookItem :documentation "Bookitem instance to transform")
+  )
   ;; function body
-  (collect (lambda (x) (format nil "~A ~C ~A" (get-oid x) #\~ (get-title (get-book-ref x)))) (find-all 'BookItem))
+  (format nil "~A ~C ~A" (get-oid book) #\~ (get-title (get-book-ref book)))
 
 ) ;; end function
 
-(def-function getBookItemByStringFormat (string-book-item)
+(def-function bookListToStringFormat (
+    (bookItems :type list :documentation "List of Bookitem instances to transform")
+  )
+  ;; function body
+  (collect (lambda (x) (bookToStringFormat x)) (find-all 'BookItem))
+
+) ;; end function
+
+(def-function bookFromStringFormat (
+    (string-book-item :type string :documentation "The formatted string BookItem to convert into customer instance")
+  )
   ;; function body
   (let* ((pos (cl:position #\~ string-book-item))
        (book-oid (cl:parse-integer (cl:subseq string-book-item 0 pos))))

@@ -14,7 +14,7 @@
   ;; function body
   (let* (
     (book-item-list (find-component :book-list dialog))
-    (book-items (stock:getAllBookItemsStringFormat))
+    (book-items (stock:bookListToStringFormat (bis:find-all 'stock:BookItem)))
     )
   
   (setf (range book-item-list) book-items)
@@ -24,6 +24,7 @@
 
 
 (defun stock-book-list-on-change (widget new-value old-value)
+  ;; function body
   (declare (ignorable widget new-value old-value))
   (let* ((dialog (parent widget))
     (state-field (find-component :state-field dialog))
@@ -31,7 +32,7 @@
     (title-field (find-component :title-field dialog))
     (author-field (find-component :author-field dialog))
     (type-field (find-component :type-field dialog))
-    (book-item (stock:getBookItemByStringFormat new-value))
+    (book-item (stock:bookFromStringFormat new-value))
     )
 
     (setf (value state-field) (stock:get-state book-item))

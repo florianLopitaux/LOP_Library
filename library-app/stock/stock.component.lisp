@@ -20,7 +20,8 @@
     findAllBookItemsFromBook
     findAllBookItemsDamaged
     findAllBookItemsPerfect
-    getAllBookItemsStringFormat
-    getBookItemByStringFormat
+    bookToStringFormat
+    bookListToStringFormat
+    bookFromStringFormat
    )
   )

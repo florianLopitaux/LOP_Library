@@ -22,8 +22,15 @@
     get-book
 
     ;; FUNCTIONS
+    toHistoryStringFormat
+    getCustomerRating
     isBookItemAvailable
     borrowBookItem
     returnBookItem
+    findAllRecordsFromBookItem
+    findAllRecordsFromCustomer
+    findAllNormalRecordsFromCustomer
+    findAllLateRecordsFromCustomer
+    findAllDamageRecordsFromCustomer
    )
   )

@@ -5,7 +5,7 @@
 ;;; EXPORT SERVICE FUNCTIONS
 ;;; =====================================
 
-(def-function toStringFormat (
+(def-function customerToStringFormat (
     (cust :type Customer :documentation "Customer instance to transform")
   )
   ;; function body
@@ -13,20 +13,20 @@
 
 ) ;; end function
 
-(def-function toListStringFormat (
-    (customers :type list :documentation "List of customer instances to transform")
+(def-function customerListToStringFormat (
+    (customers :type list :documentation "List of Customer instances to transform")
   )
   ;; function body
-  (collect (lambda (x) (toStringFormat x)) customers)
+  (collect (lambda (x) (customerToStringFormat x)) customers)
 
 ) ;; end function
 
-(def-function fromStringFormat (
+(def-function customerFromStringFormat (
     (string-cust :type string :documentation "The formatted string customer to convert into customer instance")
   )
   ;; function body
   (let* ((pos (cl:position #\~ string-cust))
-       (cust-oid (cl:parse-integer (cl:subseq string-cust 0 pos))))
+         (cust-oid (cl:parse-integer (cl:subseq string-cust 0 pos))))
     
     (find-by-oid 'Customer cust-oid)
   )

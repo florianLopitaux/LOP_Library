@@ -5,6 +5,39 @@
 ;;; SERVICE FUNCTIONS
 ;;; =====================================
 
+(def-function dateToStringFormat (
+    (date :type tDate :documentation "The date instance to transform")
+  )
+  ;; function body
+  (format nil "~A/~A/~A"
+    (tDate-month date)
+    (tDate-day date)
+    (tDate-year date)
+  )
+
+) ;; end function
+
+(def-function toHistoryStringFormat (
+    (records :type list :documentation "A list that contains BorrowingRecord instances to transform")
+  )
+  ;; function body
+  (cond
+    ((= (length records) 0) "") ;; break point
+    (else
+      (format nil
+        "BorrowingRecord {~% - BookItem: ~A~% - borrow date: ~A~% - max due date: ~A~% - is returned: ~A~% - return case: ~A~%}~%=======================~%~A"
+        (bookToStringFormat (get-book (first records)))
+        (dateToStringFormat (get-start-date (first records)))
+        (dateToStringFormat (get-due-date (first records)))
+        (get-is-returned (first records))
+        (get-return-case (first records))
+        (toHistoryStringFormat (rest records)) ;; recursif call
+      )
+    )
+  )
+
+) ;; end function
+
 (def-function getCustomerRating (
     (cust :type Customer :documentation "The customer instance")
   )
@@ -13,14 +46,18 @@
     :documentation "Get the business rules rating of a given customer."
     :examples "(getCustomerRating goodCustomer) -> :high, (getCustomerRating badCustomer) -> :low"
     :pre (not (equal cust nil))
-    :result-type eCustomerRating   
   )
 
   ;; function body
-  (first (query ?result
-            (is ?c cust)
-            (customerRating ?c ?result)
-  ))
+  (cond
+    ((equal (findAllRecordsFromCustomer cust) nil) nil)
+    (else
+      (first (query ?result
+             (is ?c cust)
+             (customerRating ?c ?result)
+      ))
+    )
+  )
 
 ) ;; end function
 

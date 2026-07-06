@@ -15,7 +15,7 @@
 ;; (Pass :owner to this function; :parent is for compatibility.)
 (defun make-library-customer-form
     (&key parent (owner (or parent (screen *system*))) exterior
-     (interior (make-box 195 70 1053 534)) (name :library-customer-form)
+     (interior (make-box 196 39 1054 595)) (name :library-customer-form)
      (title "Library Customer Space System") (border :frame) (child-p t) form-p)
   (let ((owner
          (make-window name :owner owner
@@ -44,76 +44,97 @@
 
 (defun make-library-customer-form-widgets ()
   (list (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :height 20 :left
-                       45 :name :select-customer-label :top 85 :value "Choose Customer:"
-                       :width 130)
-        (make-instance 'combo-box :font (make-font-ex nil "Arial" 10) :height 100 :left
-                       180 :name :customer-dropdown :range
+                       45 :name :select-customer-label :top 85 :value "Choose Customer:")
+        (make-instance 'combo-box :font (make-font-ex nil "Arial" 10) :left 161 :name
+                       :customer-dropdown :on-change 'customer-details-on-change :range
                        (list "No Customer Selected") :top 82 :value
-                       "No Customer Selected" :width 450)
-        (make-instance 'button :font (make-font-ex nil "Arial" 10) :height 28 :left 650
-                       :name :login-button :on-change 'customer-login-button-on-change
-                       :title "Select & Login" :top 80 :width 160)
+                       "No Customer Selected" :width 250)
         (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :height 20 :left
-                       45 :name :first-name-label :top 188 :value "First Name:" :width
+                       45 :name :first-name-label :top 314 :value "First Name:" :width
                        90)
         (make-instance 'editable-text :font (make-font-ex nil "Arial" 10) :height 25
-                       :left 145 :name :first-name-field :top 185 :value "" :width 240)
+                       :left 145 :name :first-name-field :top 311 :value "" :width 240)
         (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :height 20 :left
-                       45 :name :last-name-label :top 228 :value "Last Name:" :width 90)
+                       45 :name :last-name-label :top 354 :value "Last Name:" :width 90)
         (make-instance 'editable-text :font (make-font-ex nil "Arial" 10) :height 25
-                       :left 145 :name :last-name-field :top 225 :value "" :width 240)
+                       :left 145 :name :last-name-field :top 351 :value "" :width 240)
         (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :height 20 :left
-                       45 :name :email-label :top 268 :value "Email:" :width 90)
+                       45 :name :email-label :top 394 :value "Email:" :width 90)
         (make-instance 'editable-text :font (make-font-ex nil "Arial" 10) :height 25
-                       :left 145 :name :email-field :top 265 :value "" :width 240)
+                       :left 145 :name :email-field :top 391 :value "" :width 240)
         (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :height 20 :left
-                       45 :name :role-label :top 308 :value "Role:" :width 90)
-        (make-instance 'combo-box :font (make-font-ex nil "Arial" 10) :height 100 :left
-                       145 :name :role-dropdown :range (list :normal :student :professor)
-                       :top 305 :value :normal :width 240)
+                       45 :name :role-label :top 434 :value "Role:" :width 90)
+        (make-instance 'combo-box :font (make-font-ex nil "Arial" 10) :left 145 :name
+                       :role-dropdown :range (list :normal :student :professor) :top 431
+                       :value :normal :width 240)
         (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :height 20 :left
-                       430 :name :street-label :top 188 :value "Street Address:" :width
+                       430 :name :street-label :top 314 :value "Street Address:" :width
                        110)
         (make-instance 'editable-text :font (make-font-ex nil "Arial" 10) :height 25
-                       :left 550 :name :street-field :top 185 :value "" :width 260)
+                       :left 550 :name :street-field :top 311 :value "" :width 260)
         (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :height 20 :left
-                       430 :name :zip-label :top 228 :value "Zip Code:" :width 110)
+                       430 :name :zip-label :top 354 :value "Zip Code:" :width 110)
         (make-instance 'editable-text :font (make-font-ex nil "Arial" 10) :height 25
-                       :left 550 :name :zip-field :top 225 :value "" :width 260)
+                       :left 550 :name :zip-field :top 351 :value "" :width 260)
         (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :height 20 :left
-                       430 :name :city-label :top 268 :value "City:" :width 110)
+                       430 :name :city-label :top 394 :value "City:" :width 110)
         (make-instance 'editable-text :font (make-font-ex nil "Arial" 10) :height 25
-                       :left 550 :name :city-field :top 265 :value "" :width 260)
+                       :left 550 :name :city-field :top 391 :value "" :width 260)
         (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :height 20 :left
-                       430 :name :country-label :top 308 :value "Country:" :width 110)
+                       430 :name :country-label :top 434 :value "Country:" :width 110)
         (make-instance 'editable-text :font (make-font-ex nil "Arial" 10) :height 25
-                       :left 550 :name :country-field :top 305 :value "" :width 260)
-        (make-instance 'button :font (make-font-ex nil "Arial" 11) :height 35 :left 430
+                       :left 550 :name :country-field :top 431 :value "" :width 260)
+        (make-instance 'button :font (make-font-ex nil "Arial" 11) :height 35 :left 219
                        :name :register-button :on-click
                        'customer-register-button-on-click :title "Register New Customer"
-                       :top 385 :width 380)
-        (make-instance 'group-box :contained-widgets
-                       (list :select-customer-label :active-customer-combo :login-button)
-                       :font (make-font-ex nil "Arial" 11) :height 85 :left 25 :name
-                       :login-group :title "Select Active Customer (Login)" :top 45
-                       :width 810)
+                       :top 483 :width 380)
         (make-instance 'group-box :contained-widgets
                        (list :first-name-label :first-name-field :last-name-label
                              :last-name-field :email-label :email-field :role-label
-                             :role-dropdown :status-label :status-dropdown :street-label
-                             :street-field :zip-label :zip-field :city-label :city-field
-                             :country-label :country-field :register-button)
-                       :font (make-font-ex nil "Arial" 11) :height 295 :left 25 :name
-                       :register-group :title "Register New Customer" :top 145 :width
+                             :role-dropdown :street-label :street-field :zip-label
+                             :zip-field :city-label :city-field :country-label
+                             :country-field :register-button)
+                       :font (make-font-ex nil "Arial" 11) :height 260 :left 25 :name
+                       :register-group :title "Register New Customer" :top 271 :width
                        810)
+        (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :left 45 :name
+                       :rating-label :top 125 :value "Customer Rating:")
+        (make-instance 'editable-text :font (make-font-ex nil "Arial" 10) :left 161 :name
+                       :rating-field :read-only t :top 121 :value "" :width 120)
+        (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :left 45 :name
+                       :borrow-label :top 165 :value "Borrow Count:")
+        (make-instance 'editable-text :font (make-font-ex nil "Arial" 10) :left 161 :name
+                       :borrow-field :read-only t :top 161 :value "" :width 120)
+        (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :left 45 :name
+                       :late-label :top 205 :value "Late Returns: " :width 78)
+        (make-instance 'editable-text :font (make-font-ex nil "Arial" 10) :left 123 :name
+                       :late-field :read-only t :top 201 :value "" :width 74)
+        (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :left 232 :name
+                       :damage-returns :top 205 :value "Damage Returns:" :width 92)
+        (make-instance 'editable-text :font (make-font-ex nil "Arial" 10) :left 324 :name
+                       :damage-field :read-only t :top 201 :value "" :width 74)
+        (make-instance 'static-text :font (make-font-ex nil "Arial" 11) :left 455 :name
+                       :history-label :top 63 :value "Borrowing History")
+        (make-instance 'multi-line-editable-text :font
+                       (make-font-ex nil "Lucida Console" 10) :height 142 :left 455 :name
+                       :history-field :read-only t :top 85 :value "" :width 355)
         (make-instance 'group-box :contained-widgets
-                       (list :login-group :register-group :select-customer-label
-                             :active-customer-combo :login-button :first-name-label
+                       (list :select-customer-label :customer-dropdown :rating-label
+                             :rating-field :nb-borrow-label :nb-borrow-field :late-label
+                             :late-field :damage-returns :damage-field :history-label
+                             :history-field)
+                       :font (make-font-ex nil "Arial" 11) :height 207 :left 25 :name
+                       :login-group :title "Customer details" :top 45 :width 810)
+        (make-instance 'group-box :contained-widgets
+                       (list :select-customer-label :customer-dropdown :first-name-label
                              :first-name-field :last-name-label :last-name-field
                              :email-label :email-field :role-label :role-dropdown
-                             :status-label :status-dropdown :street-label :street-field
-                             :zip-label :zip-field :city-label :city-field :country-label
-                             :country-field :register-button)
-                       :font (make-font-ex nil "Arial" 14) :height 445 :left 10 :name
+                             :street-label :street-field :zip-label :zip-field
+                             :city-label :city-field :country-label :country-field
+                             :register-button :register-group :rating-label :rating-field
+                             :nb-borrow-label :nb-borrow-field :late-label :late-field
+                             :damage-returns :damage-field :history-label :history-field
+                             :login-group)
+                       :font (make-font-ex nil "Arial" 14) :height 541 :left 10 :name
                        :customer-space-container :title "Customer Management Space" :top
                        10 :width 840)))

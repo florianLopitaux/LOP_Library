@@ -5,6 +5,34 @@
 ;;; EXPORT SERVICE FUNCTIONS
 ;;; =====================================
 
+(def-function toStringFormat (
+    (cust :type Customer :documentation "Customer instance to transform")
+  )
+  ;; function body
+  (format nil "~A ~C ~A ~A" (get-oid cust) #\~ (tFullName-first-name (get-name cust)) (tFullName-last-name (get-name cust)))
+
+) ;; end function
+
+(def-function toListStringFormat (
+    (customers :type list :documentation "List of customer instances to transform")
+  )
+  ;; function body
+  (collect (lambda (x) (toStringFormat x)) customers)
+
+) ;; end function
+
+(def-function fromStringFormat (
+    (string-cust :type string :documentation "The formatted string customer to convert into customer instance")
+  )
+  ;; function body
+  (let* ((pos (cl:position #\~ string-cust))
+       (cust-oid (cl:parse-integer (cl:subseq string-cust 0 pos))))
+    
+    (find-by-oid 'Customer cust-oid)
+  )
+
+) ;; end function
+
 (def-function applyDiscount (
     (customer :type Customer :documentation "The Customer instance")
     (amount :type number :documentation "The amount to apply the reduction before paying")
@@ -46,9 +74,9 @@
   )
 
   (make-instance 'Customer
-          :name customer-name
-          :address address
-          :email email
-          :role customer-role
+    :name customer-name
+    :address address
+    :email email
+    :role customer-role
     :status :active)
 )

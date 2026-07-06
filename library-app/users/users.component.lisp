@@ -26,6 +26,9 @@
     ;; FUNCTIONS
     createCustomer
     getCustomerRating
+    toStringFormat
+    toListStringFormat
+    fromStringFormat
     applyDiscount
     findAllStudents
     findAllProfessors

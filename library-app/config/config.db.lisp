@@ -93,10 +93,12 @@
       :status :active)
 
     (make-instance 'users:Customer
+      :name (users:make-tFullName :first-name "Julien" :last-name "Shieler")
       :email "julien.schieler@gmail.com"
       :status :disable)
 
     (make-instance 'users:Customer
+      :name (users:make-tFullName :first-name "Florian" :last-name "Lopitaux")
       :address (users:make-tAddress
         :street "15 Rue de la Paix" 
         :zip "75002" 

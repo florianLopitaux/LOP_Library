@@ -47,7 +47,7 @@
                        45 :name :select-customer-label :top 85 :value "Choose Customer:"
                        :width 130)
         (make-instance 'combo-box :font (make-font-ex nil "Arial" 10) :height 100 :left
-                       180 :name :active-customer-combo :range
+                       180 :name :customer-dropdown :range
                        (list "No Customer Selected") :top 82 :value
                        "No Customer Selected" :width 450)
         (make-instance 'button :font (make-font-ex nil "Arial" 10) :height 28 :left 650
@@ -89,8 +89,8 @@
         (make-instance 'editable-text :font (make-font-ex nil "Arial" 10) :height 25
                        :left 550 :name :country-field :top 305 :value "" :width 260)
         (make-instance 'button :font (make-font-ex nil "Arial" 11) :height 35 :left 430
-                       :name :register-button :on-change
-                       'customer-register-button-on-change :title "Register New Customer"
+                       :name :register-button :on-click
+                       'customer-register-button-on-click :title "Register New Customer"
                        :top 385 :width 380)
         (make-instance 'group-box :contained-widgets
                        (list :select-customer-label :active-customer-combo :login-button)

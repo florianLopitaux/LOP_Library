@@ -25,6 +25,7 @@
     ;; SERVICE FUNCTIONS
     computeLibraryBalance
     computeTransactionPrice
+    computeSubscriptionPrice
     makePayment
    )
   )

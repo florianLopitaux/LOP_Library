@@ -11,7 +11,7 @@
 
 
 ;;; =====================================
-;;; ON CLICK FUNCTIONS
+;;; Button On-Click event
 ;;; =====================================
 
 (defun library-menu-stock-btn-on-click (dialog widget)

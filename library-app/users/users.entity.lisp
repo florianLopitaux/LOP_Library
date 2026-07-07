@@ -46,7 +46,8 @@
 
 (defmethod oo:to-string-details ((cust Customer))
   ;; method body
-  (format nil "~%Customer{~% - name: ~A~% - address: ~A~% - email: ~A~% - status: ~A~% - role: ~A~%}"
+  (format nil "~%Customer [~A] {~% - name: ~A~% - address: ~A~% - email: ~A~% - status: ~A~% - role: ~A~%}"
+    (get-oid cust)
     (get-name cust)
     (get-address cust)
     (get-email cust)

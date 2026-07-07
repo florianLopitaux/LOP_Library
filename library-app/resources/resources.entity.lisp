@@ -15,7 +15,7 @@
       :documentation "author of the book")
     (type
       :type 'eBookType
-      :initform :research
+      :initform :normal
       :documentation "The type of the book (research paper, normal book)")
   )
 

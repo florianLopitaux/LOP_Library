@@ -11,6 +11,7 @@
                  (make-instance 'module :name "functional/math.functional.lang.lisp")
                  (make-instance 'module :name "oo/oo.package.lisp")
                  (make-instance 'module :name "oo/oo.lang.lisp")
+                 (make-instance 'module :name "oo/serializer.oo.lang.lisp")
                  (make-instance 'module :name "rule/rule.package.lisp")
                  (make-instance 'module :name "rule/rule.lang.lisp")
                  (make-instance 'module :name "bis/bis.package.lisp")

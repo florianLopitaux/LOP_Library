@@ -1,25 +1,29 @@
 (bis:def-component ::de.h-da.lop.library-app.payment-system
   (:nicknames :payment-system)
   (:documentation "Package that manage stuff about payments for the library (subscription, penalty, ...)")
-  (:languages :functional :oo :bis :rule :workflow :test)    ;;; delete languages not used here
+  (:languages :functional :oo :bis :rule :workflow :test)
   (:import
-   ;; PACKAGE DEPENDENCIES
-   :borrowing-system
-   :users
-
+    ;; PACKAGE DEPENDENCIES
+    :users
 
    )
   (:export
     ;; DATATYPES
     eTransactionReference
 
-    ;; CLASSES
+    ;; CLASSES / ENTITIES
     Transaction
+    get-reference ;; getter of class Transaction
+    get-date ;; getter of class Transaction
+    get-amount ;; getter of class Transaction
+    get-customer ;; getter of class Transaction
 
-    ;; FUNCTIONS
+    ;; ENTITY MANAGER FUNCTIONS
     findAllTransactionsFromCustomer
+
+    ;; SERVICE FUNCTIONS
+    computeLibraryBalance
     computeTransactionPrice
     makePayment
-    subscribeNewCustomer
    )
   )

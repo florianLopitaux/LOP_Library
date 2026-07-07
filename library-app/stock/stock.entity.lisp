@@ -43,7 +43,7 @@
 
 ) ;; end method
 
-(defmethod oo:from-string-summary ((target-class (eql 'BookReference)) str)
+(defmethod oo:from-string-summary ((target-class (eql 'BookItem)) str)
   ;; method body
   (let* ((pos (cl:position #\~ str))
          (book-oid (cl:parse-integer (cl:subseq str 0 pos))))

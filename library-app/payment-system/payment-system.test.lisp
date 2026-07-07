@@ -1,5 +1,6 @@
 (in-package :payment-system)
 
+
 ;;; =====================================
 ;;; TESTS
 ;;; =====================================
@@ -21,19 +22,7 @@
   )
 )
 
-(def-test subscribe-new-customer-test
-  (let ((customer
-         (subscribeNewCustomer
-           (make-tFullName :first-name "John" :last-name "Doe")
-           :student)))
-
-    (assert-equal :active (get-status customer))
-    (assert-equal :student (get-role customer))
-  )
-)
-
 (def-test make-payment-test
-
   (let* ((customer
            (make-instance 'Customer
              :role :normal))

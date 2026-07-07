@@ -18,8 +18,8 @@
 
   ;; function body
   (query ?bi
-    (db BookItem ?bi book-ref ?b)
     (is ?b book)
+    (db BookItem ?bi book-ref ?b)
   )
 
 ) ;; end function

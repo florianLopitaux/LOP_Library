@@ -1,7 +1,7 @@
 (bis:def-component :de.h-da.lop.app.sample-app.stock
   (:nicknames :stock)
   (:documentation "Package that relate to all types of managing the stock of the library")
-  (:languages :functional :oo :bis :rule :workflow :test)    ;;; delete languages not used here
+  (:languages :functional :oo :bis :rule :workflow :test)
   (:import
     ;; PACKAGE DEPENDENCIES
     :resources
@@ -11,17 +11,17 @@
     ;; DATATYPES
     eBookCondition
 
-    ;; CLASSES
+    ;; CLASSES / ENTITIES
     BookItem
-    get-book-ref
-    get-state
+    get-book-ref ;; getter of class BookItem
+    get-state ;; getter of class BookItem
 
-    ;; FUNCTIONS
+    ;; ENTITY MANAGER FUNCTIONS
     findAllBookItemsFromBook
     findAllBookItemsDamaged
     findAllBookItemsPerfect
-    bookToStringFormat
-    bookListToStringFormat
-    bookFromStringFormat
+
+    ;; SERVICE FUNCTIONS
+    createBookItem
    )
   )

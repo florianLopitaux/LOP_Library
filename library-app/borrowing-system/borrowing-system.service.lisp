@@ -9,10 +9,15 @@
     (date :type tDate :documentation "The date instance to transform")
   )
   ;; function body
-  (format nil "~A/~A/~A"
-    (tDate-month date)
-    (tDate-day date)
-    (tDate-year date)
+  (cond
+    ((or (equal date nil) (equal date :unbound)) nil)
+    (else
+      (format nil "~A/~A/~A"
+        (tDate-month date)
+        (tDate-day date)
+        (tDate-year date)
+      )
+    )
   )
 
 ) ;; end function

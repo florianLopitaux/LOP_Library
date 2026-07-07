@@ -288,10 +288,6 @@
       :amount 10
       :customer (find-by-oid 'users:Customer 1011)
       )
-
-    
-
-    
    )
    
 ) ;; end function

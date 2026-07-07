@@ -17,7 +17,7 @@
     (bookItems :type list :documentation "List of Bookitem instances to transform")
   )
   ;; function body
-  (collect (lambda (x) (bookToStringFormat x)) (find-all 'BookItem))
+  (collect (lambda (x) (bookToStringFormat x)) bookItems)
 
 ) ;; end function
 

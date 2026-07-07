@@ -47,14 +47,12 @@
                        45 :name :borrow-book-label :top 65 :value "Available Books:"
                        :width 220)
         (make-instance 'single-item-list :font (make-font-ex nil "Arial" 10) :height 140
-                       :left 45 :name :borrow-book-list :range
-                       (list "Book One" "Book Two" "Book Three") :top 85 :value
-                       "Book One" :width 230)
+                       :left 45 :name :available-book-list :top 85 :width 230)
         (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :height 20 :left
                        310 :name :borrow-customer-label :top 85 :value "Select Customer:"
                        :width 110)
         (make-instance 'combo-box :font (make-font-ex nil "Arial" 10) :height 100 :left
-                       430 :name :borrow-customer-combo :range
+                       430 :name :customer-dropdown :range
                        (list "No Customer Selected") :top 82 :value
                        "No Customer Selected" :width 395)
         (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :height 20 :left

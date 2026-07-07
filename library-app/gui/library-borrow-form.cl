@@ -8,3 +8,20 @@
 
 (defclass library-borrow-dialog (dialog)
   ())
+
+
+(defmethod initialize-instance :after ((dialog library-borrow-dialog) &key)
+  ;; function body
+  (let* (
+    (customer-dropdown (find-component :customer-dropdown dialog))
+    (customers (bis:find-all 'users:Customer))
+    (book-list (find-component :available-book-list dialog))
+    (books (bis:find-all 'stock:BookItem))
+    )
+  
+  (setf (range customer-dropdown) (functional:add "No Customer Selected" (users:customerListToStringFormat customers)))
+  (setf (range book-list) (stock:bookListToStringFormat (functional:select (lambda (x) (borrowing-system:isBookItemAvailable x)) books)))
+  (setf (value book-list) (first (range book-list)))
+  )
+
+) ;; end function

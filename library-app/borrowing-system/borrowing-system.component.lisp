@@ -22,6 +22,7 @@
     get-book
 
     ;; FUNCTIONS
+    dateToStringFormat
     toHistoryStringFormat
     getCustomerRating
     isBookItemAvailable

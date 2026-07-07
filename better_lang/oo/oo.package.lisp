@@ -20,8 +20,13 @@
    ;;; exception handling
    error
    
-
+   ;;; method to override by entity to handle string serialization
+   to-string-summary
+   to-list-string-summary
+   to-string-details
+   to-list-string-details
+   from-string-summary
+   from-list-string-summary
 
    )
   )
-

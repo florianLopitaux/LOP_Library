@@ -59,7 +59,7 @@
     (else
       (first (query ?result
              (is ?c cust)
-             (customerRating ?c ?result)
+             (customer-rating ?c ?result)
       ))
     )
   )

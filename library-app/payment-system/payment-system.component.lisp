@@ -18,6 +18,7 @@
 
     ;; FUNCTIONS
     findAllTransactionsFromCustomer
+    computeTransactionPrice
     makePayment
     subscribeNewCustomer
    )

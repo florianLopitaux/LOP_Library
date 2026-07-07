@@ -5,6 +5,19 @@
 ;;; SERVICE FUNCTIONS
 ;;; =====================================
 
+(def-function computeTransactionPrice (
+    (cust :type Customer :documentation "The customer instance who make the transaction")
+    (transaction-ref :type eTransactionReference :documentation "The reference of the transaction (the reason)")
+  )
+  ;; function body
+  (first (query ?price
+         (is ?c cust)
+         (is ?r transaction-ref)
+         (computePrice ?c ?r ?price)
+  ))
+
+) ;; end function
+
 (def-function makePayment (
     (customer :type Customer :documentation "The customer instance who does the transaction")
     (payment-reason :type eTransactionReference :documentation "The reason of the transaction")
@@ -27,10 +40,10 @@
     (transaction (make-instance 'Transaction
         :reference payment-reason
         :date (make-tDate :month today-month :day today-day :year today-year)
-        :amount (applyCustomerDiscount customer (_getPrice payment-reason))
+        :amount (computeTransactionPrice customer payment-reason)
         :customer customer)))
 
-    (format t "~A has paid a ~A.~%" customer payment-reason)
+    (format t "~%[INFO] ~A has paid ~A € for ~A.~%" (customerToStringFormat customer) (get-amount transaction) payment-reason)
     transaction
   )
 
@@ -61,32 +74,6 @@
 
     (makePayment new-customer :subscription)
     new-customer
-  )
-
-) ;; end function
-
-
-
-;;; =====================================
-;;; PRIVATE (not exported) FUNCTIONS
-;;; =====================================
-
-(def-function _getPrice (
-    (transaction-ref :type eTransactionReference :documentation "The reference of the transaction")
-  )
-  ;; function documentation
-  (
-    :documentation "Get the money price depending on transaction-ref"
-    :examples "(_getPrice :borrow-book) -> 5, (_getPrice :penalty-book-damaged) -> 10"
-    :pre (not (equal transaction-ref nil))
-    :result-type number
-  )
-
-  ;; function body
-  (cond ((equal transaction-ref :subscription) 20)
-        ((equal transaction-ref :borrow-book) 5)
-        ((equal transaction-ref :penalty-late-return) 5)
-        (else 10) ;; penalty-book-damaged case
   )
 
 ) ;; end function

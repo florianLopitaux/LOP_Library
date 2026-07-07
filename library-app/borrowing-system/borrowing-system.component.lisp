@@ -28,6 +28,7 @@
     isBookItemAvailable
     borrowBookItem
     returnBookItem
+    calculDueDate
     findAllRecordsFromBookItem
     findAllRecordsFromCustomer
     findAllNormalRecordsFromCustomer

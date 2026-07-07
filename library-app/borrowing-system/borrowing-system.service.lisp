@@ -104,7 +104,7 @@
 
     (make-instance 'BorrowingRecord
       :start-date (make-tDate :month today-month :day today-day :year today-year)
-      :due-date (_createDueDate today-month today-day today-year)
+      :due-date (calculDueDate today-month today-day today-year)
       :customer customer
       :book item
     )
@@ -130,31 +130,7 @@
 ) ;; end function
 
 
-
-;;; =====================================
-;;; PRIVATE (not exported) FUNCTIONS
-;;; =====================================
-
-(def-function _checkAliveBorrowingRecords (
-    (records :type list :documentation "list of BorrowingRecord objects")
-  )
-  ;; function documentation
-  (
-    :documentation "Check if there is at least one record which still not returned from a list"
-    :examples "(_checkAliveBorrowingRecords '()) -> false, (_checkAliveBorrowingRecords '()) -> true"
-  )
-
-  ;; function body
-  (cond ((= (length records) 0) true)
-        ((not (get-is-returned (first records))) false)
-
-        (else (_checkAliveBorrowingRecords (rest records)))
-  )
-
-) ;; end function
-
-
-(def-function _createDueDate (
+(def-function calculDueDate (
     (month :type integer :documentation "The month number of the start date")
     (day :type integer :documentation "The day number of the start date")
     (year :type integer :documentation "The year number of the start date")
@@ -174,6 +150,30 @@
   ;; function body
   (cond ((= month 12) (make-tDate :month 1 :day day :year (+ year 1)))
         (else (make-tDate :month (+ month 1) :day day :year year))
+  )
+
+) ;; end function
+
+
+
+;;; =====================================
+;;; PRIVATE (not exported) FUNCTIONS
+;;; =====================================
+
+(def-function _checkAliveBorrowingRecords (
+    (records :type list :documentation "list of BorrowingRecord objects")
+  )
+  ;; function documentation
+  (
+    :documentation "Check if there is at least one record which still not returned from a list"
+    :examples "(_checkAliveBorrowingRecords '()) -> false, (_checkAliveBorrowingRecords '()) -> true"
+  )
+
+  ;; function body
+  (cond ((= (length records) 0) true)
+        ((not (get-is-returned (first records))) false)
+
+        (else (_checkAliveBorrowingRecords (rest records)))
   )
 
 ) ;; end function

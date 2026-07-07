@@ -42,6 +42,7 @@
                                 "payment-system/payment-system.entity.lisp")
                  (make-instance 'module :name
                                 "payment-system/payment-system.entity-manager.lisp")
+                 (make-instance 'module :name "payment-system/payment-system.rule.lisp")
                  (make-instance 'module :name
                                 "payment-system/payment-system.service.lisp")
                  (make-instance 'module :name "payment-system/payment-system.test.lisp")

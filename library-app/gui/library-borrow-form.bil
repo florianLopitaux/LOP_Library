@@ -59,16 +59,14 @@
                        310 :name :borrow-date-label :top 125 :value "Borrow Date:" :width
                        110)
         (make-instance 'editable-text :font (make-font-ex nil "Arial" 10) :height 25
-                       :left 430 :name :borrow-day-field :top 122 :value "DD" :width 45)
+                       :left 430 :name :borrow-month-field :top 122 :value "MM" :width 45)
         (make-instance 'editable-text :font (make-font-ex nil "Arial" 10) :height 25
-                       :left 490 :name :borrow-month-field :top 122 :value "MM" :width
-                       45)
+                       :left 490 :name :borrow-day-field :top 122 :value "DD" :width 45)
         (make-instance 'editable-text :font (make-font-ex nil "Arial" 10) :height 25
                        :left 550 :name :borrow-year-field :top 122 :value "YYYY" :width
                        75)
         (make-instance 'button :font (make-font-ex nil "Arial" 10) :height 28 :left 645
-                       :name :check-details-button :on-change
-                       'borrow-check-details-button-on-change :title
+                       :name :check-details-button :on-click 'borrow-check-button-on-click :title
                        "Calculate & Process" :top 120 :width 180)
         (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :height 20 :left
                        45 :name :summary-rating-label :top 313 :value "Customer Rating:"
@@ -80,7 +78,7 @@
                        45 :name :summary-date-label :top 353 :value "Max Return Date:"
                        :width 130)
         (make-instance 'editable-text :font (make-font-ex nil "Arial" 10) :height 25
-                       :left 190 :name :summary-date-field :read-only t :top 350 :value
+                       :left 190 :name :summary-due-date-field :read-only t :top 350 :value
                        "" :width 210)
         (make-instance 'static-text :font (make-font-ex nil "Arial" 10) :height 20 :left
                        435 :name :summary-price-label :top 313 :value "Price Estimation:"

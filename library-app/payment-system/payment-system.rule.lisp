@@ -2,7 +2,7 @@
 
 
 ;;; =====================================
-;;; BUSINESS RULES
+;;; BUSINESS RULES - FACTS
 ;;; =====================================
 
 (<--- (priceFromTransactionReference ?ref ?result)
@@ -49,6 +49,31 @@
 (<- (custRatingCoefficient :high 0.9)!)
 
 (<- (custRatingCoefficient ?rating 1)!) ;; default case
+
+
+;;; =====================================
+;;; BUSINESS RULES - RULES
+;;; =====================================
+
+(<--- (computeSubscriptionPrice ?role ?result)
+ "
+ Rule for calculating the final pricefor a subscription  by applying role coefficients to the base price.
+ Use this rule to estimate subscription price instead of 'computePrice' because in this case we still did not create the customer yet.
+ Arguments:
+ ?role (input) <eCustomerRole> - the role of the future customer
+ ?result (output) <number> - the final computed price in Euros
+ ")
+
+(<- (computeSubscriptionPrice ?role ?result)
+    ;; get base price for a subscription
+    (priceFromTransactionReference :subscription ?base-price)
+
+    ;; get discount depending on customer role (student, professor)
+    (custRoleCoefficient ?role ?role-coef)
+
+    ;; compute final price
+    (is ?result (* ?base-price ?role-coef))
+    )
 
 
 (<--- (computePrice ?cust ?ref ?result)

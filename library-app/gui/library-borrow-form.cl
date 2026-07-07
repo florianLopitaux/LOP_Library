@@ -10,6 +10,10 @@
   ())
 
 
+;;; =====================================
+;;; generic functions
+;;; =====================================
+
 (defun fillBooksAvailable (dialog)
   ;; function body
   (let* (
@@ -17,11 +21,16 @@
     (books (bis:find-all 'stock:BookItem))
     )
 
-  (setf (range book-list) (stock:bookListToStringFormat (functional:select (lambda (x) (borrowing-system:isBookItemAvailable x)) books)))
+  (setf (range book-list) (oo:to-list-string-summary (functional:select (lambda (x) (borrowing-system:isBookItemAvailable x)) books)))
   (setf (value book-list) (first (range book-list)))
   )
 
 ) ;; end function
+
+
+;;; =====================================
+;;; initialize window function
+;;; =====================================
 
 (defmethod initialize-instance :after ((dialog library-borrow-dialog) &key)
   ;; function body
@@ -30,12 +39,16 @@
     (customers (bis:find-all 'users:Customer))
     )
   
-  (setf (range customer-dropdown) (functional:add "No Customer Selected" (users:customerListToStringFormat customers)))
+  (setf (range customer-dropdown) (functional:add "No Customer Selected" (oo:to-list-string-summary customers)))
   (fillBooksAvailable dialog)
   )
 
 ) ;; end function
 
+
+;;; =====================================
+;;; Button On-Click event
+;;; =====================================
 
 (defun borrow-check-button-on-click (dialog widget)
   ;; function body
@@ -60,21 +73,20 @@
     ((or (equal year nil) (< year 0)) (format t "~%[ERROR] Invalid Year format ! Use positive number"))
 
     (functional:else 
-      (setf (value rating-field) (borrowing-system:getCustomerRating (users:customerFromStringFormat selected-customer)))
+      (setf (value rating-field) (borrowing-system:getCustomerRating (oo:from-string-summary selected-customer)))
       (setf (value due-date-field) (borrowing-system:dateToStringFormat (borrowing-system:calculDueDate month day year)))
-      (setf (value price-field) (payment-system:computeTransactionPrice (users:customerFromStringFormat selected-customer) :borrow-book))
+      (setf (value price-field) (payment-system:computeTransactionPrice (oo:from-string-summary selected-customer) :borrow-book))
     )
   ))
 
 t) ;; end function
 
-
 (defun borrow-confirm-button-on-click (dialog widget)
   ;; function body
   (declare (ignorable dialog widget))
   (let* (
-    (selected-book (stock:bookFromStringFormat (value (find-component :available-book-list dialog))))
-    (selected-customer (users:customerFromStringFormat (value (find-component :customer-dropdown dialog))))
+    (selected-book (oo:from-string-summary (value (find-component :available-book-list dialog))))
+    (selected-customer (oo:from-string-summary (value (find-component :customer-dropdown dialog))))
     (month (handler-case (parse-integer (value (find-component :borrow-month-field dialog))) (parse-error () nil)))
     (day (handler-case (parse-integer (value (find-component :borrow-day-field dialog))) (parse-error () nil)))
     (year (handler-case (parse-integer (value (find-component :borrow-year-field dialog))) (parse-error () nil)))
@@ -88,9 +100,9 @@ t) ;; end function
     :date (borrowing-system:make-tDate :month month :day day :year year)
   )
 
-  (format t "~%[INFO] ~A has borrow the book : ~A"
-    (users:customerToStringFormat selected-customer)
-    (stock:bookToStringFormat selected-book)
+  (format t "~%[INFO] (~A) has borrow the book : (~A)"
+    (oo:to-string-summary selected-customer)
+    (oo:to-string-summary selected-book)
   )
 
   ;; refresh the list of books available

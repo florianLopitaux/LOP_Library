@@ -10,11 +10,15 @@
   ())
 
 
+;;; =====================================
+;;; initialize window function
+;;; =====================================
+
 (defmethod initialize-instance :after ((dialog library-stock-dialog) &key)
   ;; function body
   (let* (
     (book-item-list (find-component :book-list dialog))
-    (book-items (stock:bookListToStringFormat (bis:find-all 'stock:BookItem)))
+    (book-items (oo:to-list-string-summary (bis:find-all 'stock:BookItem)))
     )
   
   (setf (range book-item-list) book-items)
@@ -22,6 +26,10 @@
 
 ) ;; end function
 
+
+;;; =====================================
+;;; Combo-box On-Change event
+;;; =====================================
 
 (defun stock-book-list-on-change (widget new-value old-value)
   ;; function body
@@ -32,7 +40,7 @@
     (title-field (find-component :title-field dialog))
     (author-field (find-component :author-field dialog))
     (type-field (find-component :type-field dialog))
-    (book-item (stock:bookFromStringFormat new-value))
+    (book-item (oo:from-string-summary new-value))
     )
 
     (setf (value state-field) (stock:get-state book-item))

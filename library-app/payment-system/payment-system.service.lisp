@@ -19,6 +19,7 @@
 
 ) ;; end function
 
+
 (def-function computeTransactionPrice (
     (cust :type Customer :documentation "The customer instance who make the transaction")
     (transaction-ref :type eTransactionReference :documentation "The reference of the transaction (the reason)")
@@ -31,6 +32,19 @@
   ))
 
 ) ;; end function
+
+
+(def-function computeSubscriptionPrice (
+    (role :type eCustomerRole :documentation "The customer role who is going to subscribe")
+  )
+  ;; function body
+  (first (query ?price
+         (is ?r role)
+         (computeSubscriptionPrice ?r ?price)
+  ))
+
+) ;; end function
+
 
 (def-function makePayment (
     (customer :type Customer :documentation "The customer instance who does the transaction")

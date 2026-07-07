@@ -5,6 +5,7 @@
   (:import
     ;; PACKAGE DEPENDENCIES
     :users
+    :borrowing-system
 
    )
   (:export

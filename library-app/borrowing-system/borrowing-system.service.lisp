@@ -22,27 +22,6 @@
 
 ) ;; end function
 
-(def-function toHistoryStringFormat (
-    (records :type list :documentation "A list that contains BorrowingRecord instances to transform")
-  )
-  ;; function body
-  (cond
-    ((= (length records) 0) "") ;; break point
-    (else
-      (format nil
-        "BorrowingRecord {~% - BookItem: ~A~% - borrow date: ~A~% - max due date: ~A~% - is returned: ~A~% - return case: ~A~%}~%=======================~%~A"
-        (bookToStringFormat (get-book (first records)))
-        (dateToStringFormat (get-start-date (first records)))
-        (dateToStringFormat (get-due-date (first records)))
-        (get-is-returned (first records))
-        (get-return-case (first records))
-        (toHistoryStringFormat (rest records)) ;; recursif call
-      )
-    )
-  )
-
-) ;; end function
-
 (def-function getCustomerRating (
     (cust :type Customer :documentation "The customer instance")
   )

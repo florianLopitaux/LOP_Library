@@ -5,16 +5,15 @@
 ;;; DATATYPES
 ;;; =====================================
 
-(def-struct tDate month day year)
-
-
 (def-enum-type eCustomerRating
     (:low :medium :high)
 
-  "Rating of a customer")
-
+  "Rating bounds of a customer")
 
 (def-enum-type eReturnCase 
     (:normal :late :damage :late-damage)
 
-  "State of the returned book")
+  "State of the returned book for a borrow")
+
+
+(def-struct tDate month day year)

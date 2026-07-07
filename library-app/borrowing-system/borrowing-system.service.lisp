@@ -86,6 +86,8 @@
 (def-function borrowBookItem (
     (item :type BookItem :description "The BookItem instance to borrow")
     (customer :type Customer :description "The Cutomser instance who borrow a book")
+    &key
+    (date :type tDate :description "The date of the borrow, optional by default is today")
   )
   ;; function documentation
   (
@@ -93,23 +95,25 @@
     :examples "(borrowBookItem 'item1) -> false, (borrowBookItem 'item2) -> true"
     :pre (not (equal item nil))
     :pre (isBookItemAvailable item)
+    :pre (not (equal customer nil))
     :result-type BorrowingRecord
   )
 
   ;; function body
-  (let* ((current-time (cl:multiple-value-list (cl:get-decoded-time)))
-       (today-day   (cl:fourth current-time))
-       (today-month (cl:fifth current-time))
-       (today-year  (cl:sixth current-time)))
+  (progn
+    (cond ((equal date nil)
+      (let ((current-time (cl:multiple-value-list (cl:get-decoded-time))))
+        (setf date (make-tDate :day (cl:fourth current-time) :month (cl:fifth current-time) :year (cl:sixth current-time)))
+      ))
+    )
 
     (make-instance 'BorrowingRecord
-      :start-date (make-tDate :month today-month :day today-day :year today-year)
-      :due-date (calculDueDate today-month today-day today-year)
+      :start-date date
+      :due-date (calculDueDate (tDate-month date) (tDate-day date) (tDate-year date))
       :customer customer
       :book item
     )
   )
-
 ) ;; end function
 
 

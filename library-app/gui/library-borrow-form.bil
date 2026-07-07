@@ -87,8 +87,8 @@
                        :left 580 :name :summary-price-field :read-only t :top 310 :value
                        "" :width 245)
         (make-instance 'button :font (make-font-ex nil "Arial" 10) :height 28 :left 435
-                       :name :confirm-borrow-button :on-change
-                       'borrow-confirm-button-on-change :title "Confirm Borrowing" :top
+                       :name :confirm-borrow-button :on-click
+                       'borrow-confirm-button-on-click :title "Confirm Borrowing" :top
                        348 :width 390)
         (make-instance 'group-box :contained-widgets
                        (list :borrow-book-label :borrow-book-list) :font

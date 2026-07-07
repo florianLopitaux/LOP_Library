@@ -1,23 +1,23 @@
 (bis:def-component ::de.h-da.lop.library-app.resources
   (:nicknames :resources)
   (:documentation "Package that relate to all types of resources in the library")
-  (:languages :functional :oo :bis :rule :workflow :test)    ;;; delete languages not used here
+  (:languages :functional :oo :bis :rule :workflow :test)
   (:import  
-      ;;; no dependencies
+    ;; PACKAGE DEPENDENCIES
 	  
    )
   (:export
     ;; DATATYPES
     eBookType
 
-    ;; CLASSES
+    ;; CLASSES / ENTITIES
     BookReference
-    get-title
-    get-author
-    get-type
+    get-title ;; getter of class BookReference
+    get-author ;; getter of class BookReference
+    get-type ;; getter of class BookReference
 
-    ;; FUNCTIONS
-    findAllResearchBookReferences
+    ;; ENTITY MANAGER FUNCTIONS
     findAllNormalBookReferences
+    findAllResearchBookReferences
    )
   )

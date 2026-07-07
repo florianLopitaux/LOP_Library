@@ -7,7 +7,10 @@
 
 (<--- (priceFromTransactionReference ?ref ?result)
  "
-TODO documentation
+ Rule for determining the base price based on the type of transaction.
+ Arguments:
+ ?ref (input) <eTransactionReference> - the transaction reference identifier (e.g., :subscription, :borrow-book)
+ ?result (output) <number> - the associated base price in Euros, defaults to 0 if unknown
  ")
 
 (<- (priceFromTransactionReference :subscription 20)!)
@@ -20,7 +23,10 @@ TODO documentation
 
 (<--- (custRoleCoefficient ?role ?result)
  "
-TODO documentation
+ Rule for mapping a customer role to its corresponding pricing coefficient.
+ Arguments:
+ ?role (input) <eCustomerRole> - the customer role identifier (e.g., :normal, :student, :professor)
+ ?result (output) <number> - the multiplier applied to the base price, defaults to 1
  ")
 
 (<- (custRoleCoefficient :normal 1)!)
@@ -32,7 +38,10 @@ TODO documentation
 
 (<--- (custRatingCoefficient ?rating ?result)
  "
-TODO documentation
+ Rule for mapping a customer rating category to its corresponding risk/reward coefficient.
+ Arguments:
+ ?rating (input) <eCustomerRating> - the customer rating category (:low, :medium, or :high)
+ ?result (output) <number> - the multiplier applied to the price, defaults to 1
  ")
 
 (<- (custRatingCoefficient :low 1.2)!)
@@ -44,7 +53,11 @@ TODO documentation
 
 (<--- (computePrice ?cust ?ref ?result)
  "
-TODO documentation
+ Rule for calculating the final transaction price by applying role and rating coefficients to the base price.
+ Arguments:
+ ?cust (input) <Customer> - the customer instance performing the transaction
+ ?ref (input) <eTransactionReference> - the transaction reference identifier
+ ?result (output) <number> - the final computed price in Euros
  ")
 
 (<- (computePrice ?cust ?ref ?result)

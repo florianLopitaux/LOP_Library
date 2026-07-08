@@ -36,8 +36,6 @@
   ;; function body
   (cond ((= (length entities) 0) nil)  ;; recursif break point
         (else (progn
-          (format t "[DB-CONFIG] Clean database entity '~A' rows~%" (first entities))
-
           ;; clear all istances of the first entity in the list
           (_deleteEntityInstances (find-all (first entities)))
 
@@ -294,9 +292,6 @@
 
 
 
-
-
-
 (def-function dbSeed (
     (entities :type list :documentation "List of entities to seed")
   )
@@ -315,11 +310,12 @@
             ;; call the seed entity function which has to be properly named
             (funcall (cl:intern (format nil "_dbSeed~A" (first entities)) "config"))
 
+            (format t "[DB-CONFIG] Entity '~A' seeded !~%" (first entities))
+
             ;; recursif call
             (dbSeed (rest entities))
           )))
 
-          (format t "[DB-CONFIG] Entity '~A' seeded !~%" (first entities))
           result
         ))
   )

@@ -23,5 +23,7 @@
 
     ;; SERVICE FUNCTIONS
     createBookItem
+    estimateDeliveryTime
+    orderBookitem
    )
   )

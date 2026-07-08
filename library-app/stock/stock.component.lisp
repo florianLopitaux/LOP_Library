@@ -10,6 +10,8 @@
   (:export
     ;; DATATYPES
     eBookCondition
+    eventBookDelivered
+    get-order-book-ref ;; getter of event eventBookDelivered
 
     ;; CLASSES / ENTITIES
     BookItem

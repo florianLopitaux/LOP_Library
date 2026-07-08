@@ -71,7 +71,7 @@
         :amount (computeTransactionPrice customer payment-reason)
         :customer customer)))
 
-    (format t "~%[INFO] ~A has paid ~A euros for ~A." (oo:to-string-summary customer) (get-amount transaction) payment-reason)
+    (format t "~%[INFO] ~A has paid ~A euros for ~A." (to-string-summary customer) (get-amount transaction) payment-reason)
     transaction
   )
 

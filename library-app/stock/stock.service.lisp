@@ -61,7 +61,7 @@
   (progn
     ;; ;; simulate delivery
     (format output-stream "~%[INFO] (~A) has been order, it will take ~A minutes to receive it"
-      (oo:to-string-summary book-ref) (estimateDeliveryTime book-ref)
+      (to-string-summary book-ref) (estimateDeliveryTime book-ref)
     )
     (cl:force-output output-stream)
 
@@ -78,8 +78,8 @@
 (def-process processEventBookDelivered (event :type eventBookDelivered)
   ;; process body
   (format (get-output-stream event) "~%[INFO ~~ 'eventBookDelivered triggered] (~A) delivered, create new book item : ~A"
-      (oo:to-string-summary (get-order-book-ref event))
-      (oo:to-string-details (createBookItem (get-order-book-ref event)))
+      (to-string-summary (get-order-book-ref event))
+      (to-string-details (createBookItem (get-order-book-ref event)))
   )
   (cl:force-output (get-output-stream event))
 

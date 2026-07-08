@@ -38,7 +38,7 @@
   )
 
   ;; function body
-  (+ 1 (* 0.5 (length (findAllBookItemsFromBook book-ref))))
+  (+ 1 (* 2 (length (findAllBookItemsFromBook book-ref))))
 
 ) ;; end function
 
@@ -47,7 +47,34 @@
     (book-ref :type BookReference :documentation "The BookReference instance to order")
   )
   ;; function documentation
+  (
+    :documentation "Order a new book copy for the library storage from a book reference"
+    :examples "(orderNewBookItem #<BookReference[...]* ...>) -> "
+    :pre (not (equal book-ref nil))
+  )
 
   ;; function body
+  (progn
+    ;; ;; simulate delivery
+    (format t "~%[INFO] (~A) has been order, it will take ~A minutes to receive it"
+      (oo:to-string-summary book-ref) (estimateDeliveryTime book-ref)
+    )
+
+    ;; simulate delivery
+    (wait-for-first (timer-voucher :minutes (estimateDeliveryTime book-ref)))
+
+    ;; timer ends -> trigger event
+    (handle-event (make-instance 'eventBookDelivered :order-book-ref book-ref))
+  )
 
 ) ;; end function
+
+
+(def-process processEventBookDelivered (event :type eventBookDelivered)
+  ;; process body
+  (format t "~%[INFO ~~ 'eventBookDelivered triggered] (~A) delivered, create new book item : ~A"
+      (oo:to-string-summary (get-order-book-ref event))
+      (oo:to-string-details (createBookItem (get-order-book-ref event)))
+  )
+
+) ;; end process

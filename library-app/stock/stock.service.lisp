@@ -24,3 +24,30 @@
         (else (make-instance 'BookItem :book-ref book-ref :state book-state))
   )
 ) ;; end function
+
+
+(def-function estimateDeliveryTime (
+    (book-ref :type BookReference :documentation "The BookReference instance to estimate the time to order")
+  )
+  ;; function documentation
+  (
+    :documentation "Estimate the time to receive a new book item from a BookReference if we order it"
+    :examples "(estimateDeliveryTime #<BookReference[...]* ...>) -> 2.5"
+    :pre (not (equal book-ref nil))
+    :result-type number
+  )
+
+  ;; function body
+  (+ 1 (* 0.5 (length (findAllBookItemsFromBook book-ref))))
+
+) ;; end function
+
+
+(def-function orderBookitem (
+    (book-ref :type BookReference :documentation "The BookReference instance to order")
+  )
+  ;; function documentation
+
+  ;; function body
+
+) ;; end function

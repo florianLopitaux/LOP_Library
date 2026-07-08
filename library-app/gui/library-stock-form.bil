@@ -15,7 +15,7 @@
 ;; (Pass :owner to this function; :parent is for compatibility.)
 (defun make-library-stock-form
     (&key parent (owner (or parent (screen *system*))) exterior
-     (interior (make-box 269 138 1173 539)) (name :library-stock-form)
+     (interior (make-box 169 39 1073 599)) (name :library-stock-form)
      (title "Library Stock Management") (border :frame) (child-p t) form-p)
   (let ((owner
          (make-window name :owner owner
@@ -84,12 +84,39 @@
                              :type-label :type-field :book-reference-subgroup)
                        :font (make-font-ex nil "Arial" 16) :height 315 :left 35 :name
                        :book-inventory-group :title "Book Inventory" :top 55 :width 830)
+        (make-instance 'single-item-list :font (make-font-ex nil "Arial" 13) :height 102
+                       :left 55 :name :book-ref-list :on-change 'stock-book-ref-list-on-change
+                       :range (list :one :two :three) :top 415 :value :one :width 136)
+        (make-instance 'multi-line-editable-text :font
+                       (make-font-ex nil "Lucida Console" 13) :height 118 :left 232 :name
+                       :book-ref-details-field :read-only t :top 405 :value "" :width
+                       198)
+        (make-instance 'static-text :font (make-font-ex nil "Arial" 13) :left 482 :name
+                       :book-count-label :top 405 :value "Book Copy Count:" :width 124)
+        (make-instance 'editable-text :font (make-font-ex nil "Arial" 13) :left 482 :name
+                       :book-count-field :read-only t :top 427 :value "" :width 124)
+        (make-instance 'static-text :font (make-font-ex nil "Arial" 13) :left 482 :name
+                       :delivery-time-label :top 465 :value "Estimated delibery time:"
+                       :width 147)
+        (make-instance 'editable-text :font (make-font-ex nil "Arial" 13) :left 482 :name
+                       :delivery-time-field :read-only t :top 487 :value "" :width 124)
+        (make-instance 'button :font (make-font-ex nil "Arial" 15) :height 60 :left 673
+                       :name :order-book-button :on-click 'stock-order-button-on-click
+                       :title "Order Book Item" :top 427 :width 134)
+        (make-instance 'group-box :contained-widgets
+                       (list :book-ref-list :book-ref-details-field :book-count-label
+                             :book-count-field :delivery-time-label :delivery-time-field
+                             :order-book-button)
+                       :font (make-font-ex nil "Arial" 16) :height 147 :left 35 :name
+                       :book-order-group :title "Order a Book" :top 385 :width 830)
         (make-instance 'group-box :contained-widgets
                        (list :library-stock-label :book-list :book-details-label
                              :state-label :state-field :available-label :available-field
                              :title-label :title-field :author-label :author-field
                              :type-label :type-field :book-reference-subgroup
-                             :book-inventory-group)
-                       :font (make-font-ex nil "Arial" 18) :height 365 :left 20 :name
+                             :book-inventory-group :book-ref-list :book-ref-details-field
+                             :book-count-label :book-count-field :delivery-time-label
+                             :delivery-time-field :order-book-button :book-order-group)
+                       :font (make-font-ex nil "Arial" 18) :height 529 :left 20 :name
                        :main-container :title "Library Management Space" :top 20 :width
                        860)))

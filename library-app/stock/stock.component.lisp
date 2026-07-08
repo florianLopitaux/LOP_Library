@@ -12,6 +12,7 @@
     eBookCondition
     eventBookDelivered
     get-order-book-ref ;; getter of event eventBookDelivered
+    get-output-stream ;; getter of event eventBookDelivered
 
     ;; CLASSES / ENTITIES
     BookItem
@@ -26,6 +27,6 @@
     ;; SERVICE FUNCTIONS
     createBookItem
     estimateDeliveryTime
-    orderBookitem
+    orderBookItem
    )
   )

@@ -36,7 +36,7 @@
 
 (defmethod oo:to-string-summary ((cust Customer))
   ;; method body
-  (format nil "~A \~ ~A ~A"
+  (format nil "~A ~~ ~A ~A"
       (get-oid cust)
       (tFullName-first-name (get-name cust))
       (tFullName-last-name (get-name cust))

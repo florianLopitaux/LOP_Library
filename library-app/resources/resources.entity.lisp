@@ -29,7 +29,7 @@
 
 (defmethod oo:to-string-summary ((book-ref BookReference))
   ;; method body
-  (format nil "~A \~ ~A"
+  (format nil "~A ~~ ~A"
       (get-oid book-ref)
       (get-title book-ref)
   )

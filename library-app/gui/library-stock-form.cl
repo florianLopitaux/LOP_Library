@@ -85,7 +85,8 @@ t) ;; end function
     (book-ref (oo:from-string-summary 'resources:BookReference (value (find-component :book-ref-list dialog))))
     )
 
-  (stock:orderBookitem book-ref)
+  ;; *terminal-io* is a 'redirection' of the console main thread for the log trace
+  (workflow:invoke-asynch 'stock:orderBookItem book-ref *terminal-io*)
   )
 
 t) ;; end function

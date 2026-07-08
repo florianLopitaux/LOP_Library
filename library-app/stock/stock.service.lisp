@@ -46,8 +46,9 @@
 ) ;; end function
 
 
-(def-function orderBookitem (
+(def-function orderBookItem (
     (book-ref :type BookReference :documentation "The BookReference instance to order")
+    (output-stream :documentation "The stream to print logs to")
   )
   ;; function documentation
   (
@@ -59,15 +60,16 @@
   ;; function body
   (progn
     ;; ;; simulate delivery
-    (format t "~%[INFO] (~A) has been order, it will take ~A minutes to receive it"
+    (format output-stream "~%[INFO] (~A) has been order, it will take ~A minutes to receive it"
       (oo:to-string-summary book-ref) (estimateDeliveryTime book-ref)
     )
+    (cl:force-output output-stream)
 
     ;; simulate delivery
     (wait-for-first (timer-voucher :minutes (estimateDeliveryTime book-ref)))
 
-    ;; timer ends -> trigger event
-    (handle-event (make-instance 'eventBookDelivered :order-book-ref book-ref))
+      ;; timer ends -> trigger event
+    (handle-event (make-instance 'eventBookDelivered :order-book-ref book-ref :output-stream output-stream))
   )
 
 ) ;; end function
@@ -75,10 +77,11 @@
 
 (def-process processEventBookDelivered (event :type eventBookDelivered)
   ;; process body
-  (format t "~%[INFO ~~ 'eventBookDelivered triggered] (~A) delivered, create new book item : ~A"
+  (format (get-output-stream event) "~%[INFO ~~ 'eventBookDelivered triggered] (~A) delivered, create new book item : ~A"
       (oo:to-string-summary (get-order-book-ref event))
       (oo:to-string-details (createBookItem (get-order-book-ref event)))
   )
+  (cl:force-output (get-output-stream event))
 
 ) ;; end process
 

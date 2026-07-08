@@ -17,6 +17,7 @@
                  (make-instance 'module :name "stock/stock.datatype.lisp")
                  (make-instance 'module :name "stock/stock.entity.lisp")
                  (make-instance 'module :name "stock/stock.entity-manager.lisp")
+                 (make-instance 'module :name "stock/stock.rule.lisp")
                  (make-instance 'module :name "stock/stock.service.lisp")
                  (make-instance 'module :name "stock/stock.test.lisp")
                  (make-instance 'module :name

@@ -38,7 +38,10 @@
   )
 
   ;; function body
-  (+ 1 (* 2 (length (findAllBookItemsFromBook book-ref))))
+  (first (query ?time
+         (is ?ref book-ref)
+         (estimate-delivery-time ?ref ?time))
+  )
 
 ) ;; end function
 
@@ -78,3 +81,26 @@
   )
 
 ) ;; end process
+
+
+;;; =====================================
+;;; PRIVATE (not exported) FUNCTIONS
+;;; =====================================
+
+(def-function _computePenaltyDuration (
+    (book-ref :type BookReference :documentation "The BookReference instance to use")
+  )
+  ;; function body
+  (reduce '+
+    (collect
+      (lambda (x) (first 
+        (query ?duration
+        (is ?state (get-state x))
+        (copyPenaltyDuration ?state ?duration)))
+      )
+      (findAllBookItemsFromBook book-ref)
+    )
+    :initial-value 0
+  )
+
+) ;; end function

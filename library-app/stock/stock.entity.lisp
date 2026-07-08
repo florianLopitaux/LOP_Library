@@ -26,7 +26,7 @@
 
 (defmethod oo:to-string-summary ((book BookItem))
   ;; method body
-  (format nil "~A \~ ~A"
+  (format nil "~A ~~ ~A"
       (get-oid book)
       (get-title (get-book-ref book))
   )
@@ -37,7 +37,7 @@
   ;; method body
   (format nil "~%BookReference [~A] {~% - book-ref: ~A~% - state: ~A~%}"
     (get-oid book)
-    (oo:to-string-details (get-book-ref book))
+    (oo:to-string-summary (get-book-ref book))
     (get-state book)
   )
 

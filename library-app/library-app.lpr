@@ -5,7 +5,6 @@
                  (make-instance 'module :name "users/users.datatype.lisp")
                  (make-instance 'module :name "users/users.entity.lisp")
                  (make-instance 'module :name "users/users.entity-manager.lisp")
-                 (make-instance 'module :name "users/users.rule.lisp")
                  (make-instance 'module :name "users/users.service.lisp")
                  (make-instance 'module :name "users/users.test.lisp")
                  (make-instance 'module :name "resources/resources.component.lisp")

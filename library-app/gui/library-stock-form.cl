@@ -40,7 +40,7 @@
     (title-field (find-component :title-field dialog))
     (author-field (find-component :author-field dialog))
     (type-field (find-component :type-field dialog))
-    (book-item (oo:from-string-summary new-value))
+    (book-item (oo:from-string-summary 'stock:BookItem new-value))
     )
 
     (setf (value state-field) (stock:get-state book-item))

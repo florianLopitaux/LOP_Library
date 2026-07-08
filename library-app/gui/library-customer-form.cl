@@ -65,7 +65,7 @@
   (cond
     ((equal new-value "No Customer Selected") nil)
     (functional:else
-      (let ((customer (oo:from-string-summary new-value)))
+      (let ((customer (oo:from-string-summary 'users:Customer new-value)))
       
       (setf (value rating-field) (borrowing-system:getCustomerRating customer))
       (setf (value borrow-count-field) (extractRecordsCount (borrowing-system:findAllRecordsFromCustomer customer)))
@@ -111,16 +111,20 @@ t) ;; end function
   (cond
     ((= (length first-name) 0) (format t "~%[ERROR] The first-name of the new customer is required !"))
     ((= (length last-name) 0) (format t "~%[ERROR] The last-name of the new customer is required !"))
+    
     (functional:else
-      (format t "~%[INFO] New Customer created : ~A"
-        (oo:to-string-details (users:createCustomer
+      (let ((new-cust (users:createCustomer
           (users:make-tFullName :first-name first-name :last-name last-name)
           role
           :address (users:make-tAddress :street street :zip zip :city city :country country)
           :email email
-        ))
-      )
+        )))
       
+      (payment-system:makePayment new-cust :subscription)
+
+      (format t "~%[INFO] New Customer created : ~A" (oo:to-string-details new-cust))
+      )
+
       (fillCustomerDropdown dialog) ;; update the dropdown to add the created customer
     )
   ))

@@ -35,7 +35,7 @@
 
 (defmethod oo:to-string-summary ((record BorrowingRecord))
   ;; method body
-  (format nil "~A \~ book: ~A | customer: ~A"
+  (format nil "~A ~~ book: ~A | customer: ~A"
       (get-oid record)
       (oo:to-string-summary (get-book record))
       (oo:to-string-summary (get-customer record))
@@ -45,14 +45,14 @@
 
 (defmethod oo:to-string-details ((record BorrowingRecord))
   ;; method body
-  (format nil "BorrowingRecord [~A] {~% - borrow date: ~A~% - max due date: ~A~% - is returned: ~A~% - return case: ~A~%  - book: ~A~%  - customer: ~A~%}"
+  (format nil "~%BorrowingRecord [~A] {~% - borrow date: ~A~% - max due date: ~A~% - is returned: ~A~% - return case: ~A~% - book: ~A~% - customer: ~A~%}"
       (get-oid record)
       (dateToStringFormat (get-start-date record))
       (dateToStringFormat (get-due-date record))
       (get-is-returned record)
       (get-return-case record)
-      (oo:to-string-details (get-book record))
-      (oo:to-string-details (get-customer record))
+      (oo:to-string-summary (get-book record))
+      (oo:to-string-summary (get-customer record))
   )
 
 ) ;; end method

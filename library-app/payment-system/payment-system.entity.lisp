@@ -33,9 +33,9 @@
 
 (defmethod oo:to-string-summary ((transaction Transaction))
   ;; method body
-  (format nil "~A \~ reference: ~A | customer: ~A"
+  (format nil "~A ~~ reference: ~A | customer: ~A"
       (get-oid transaction)
-      (get-refence transaction)
+      (get-reference transaction)
       (oo:to-string-summary (get-customer transaction))
   )
 
@@ -48,7 +48,7 @@
     (get-reference transaction)
     (get-date transaction)
     (get-amount transaction)
-    (oo:to-string-details (get-customer transaction))
+    (oo:to-string-summary (get-customer transaction))
   )
 
 ) ;; end method

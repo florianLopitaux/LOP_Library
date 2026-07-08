@@ -73,9 +73,9 @@
     ((or (equal year nil) (< year 0)) (format t "~%[ERROR] Invalid Year format ! Use positive number"))
 
     (functional:else 
-      (setf (value rating-field) (borrowing-system:getCustomerRating (oo:from-string-summary selected-customer)))
+      (setf (value rating-field) (borrowing-system:getCustomerRating (oo:from-string-summary 'users:Customer selected-customer)))
       (setf (value due-date-field) (borrowing-system:dateToStringFormat (borrowing-system:calculDueDate month day year)))
-      (setf (value price-field) (payment-system:computeTransactionPrice (oo:from-string-summary selected-customer) :borrow-book))
+      (setf (value price-field) (payment-system:computeTransactionPrice (oo:from-string-summary 'users:Customer selected-customer) :borrow-book))
     )
   ))
 
@@ -85,8 +85,8 @@ t) ;; end function
   ;; function body
   (declare (ignorable dialog widget))
   (let* (
-    (selected-book (oo:from-string-summary (value (find-component :available-book-list dialog))))
-    (selected-customer (oo:from-string-summary (value (find-component :customer-dropdown dialog))))
+    (selected-book (oo:from-string-summary 'stock:BookItem (value (find-component :available-book-list dialog))))
+    (selected-customer (oo:from-string-summary 'users:Customer (value (find-component :customer-dropdown dialog))))
     (month (handler-case (parse-integer (value (find-component :borrow-month-field dialog))) (parse-error () nil)))
     (day (handler-case (parse-integer (value (find-component :borrow-day-field dialog))) (parse-error () nil)))
     (year (handler-case (parse-integer (value (find-component :borrow-year-field dialog))) (parse-error () nil)))
